@@ -82,3 +82,10 @@ If the user supplies partial updates (e.g., only one principle revision), still 
 If critical info missing (e.g., ratification date truly unknown), insert `TODO(<FIELD_NAME>): explanation` and include in the Sync Impact Report under deferred items.
 
 Do not create a new template; always operate on the existing `.specify/memory/constitution.md` file.
+
+
+## Project-Specific Context
+- This is a React + TypeScript + Turborepo monorepo
+- SDK: packages/sdk | Apps: apps/cms, apps/bwo-tax-forms, apps/demo
+- Read .specify/memory/constitution.md BEFORE any action
+- Storage interface: IContentStorage — never bypass it

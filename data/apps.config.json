@@ -1,0 +1,70 @@
+{
+  "apps": [
+    {
+      "id": "demo",
+      "name": "Demo App",
+      "description": "Simple React demo showcasing ContentFlow SDK integration",
+      "defaultLanguage": "en-US",
+      "supportedLanguages": ["en-US", "es-ES", "fr-FR"],
+      "pages": [
+        {
+          "id": "home",
+          "name": "Home",
+          "previewPort": 3002,
+          "previewPath": "/"
+        },
+        {
+          "id": "about",
+          "name": "About",
+          "previewPort": 3002,
+          "previewPath": "/about"
+        },
+        {
+          "id": "services",
+          "name": "Services",
+          "previewPort": 3002,
+          "previewPath": "/services"
+        },
+        {
+          "id": "contact",
+          "name": "Contact",
+          "previewPort": 3002,
+          "previewPath": "/contact"
+        }
+      ]
+    },
+    {
+      "id": "bwo-taxforms",
+      "name": "BWO Tax Forms",
+      "description": "Metadata-driven tax form application for BWO clients",
+      "defaultLanguage": "en-US",
+      "supportedLanguages": ["en-US", "es-ES"],
+      "pages": [
+        {
+          "id": "personal-info",
+          "name": "Personal Information",
+          "previewPort": 3001,
+          "previewPath": "/personal-info"
+        },
+        {
+          "id": "income",
+          "name": "Income Details",
+          "previewPort": 3001,
+          "previewPath": "/income"
+        },
+        {
+          "id": "deductions",
+          "name": "Deductions",
+          "previewPort": 3001,
+          "previewPath": "/deductions"
+        },
+        {
+          "id": "summary",
+          "name": "Summary & Submit",
+          "previewPort": 3001,
+          "previewPath": "/summary"
+        }
+      ]
+    }
+  ]
+}

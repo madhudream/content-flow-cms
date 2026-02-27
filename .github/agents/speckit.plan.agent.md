@@ -88,3 +88,12 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 - Use absolute paths
 - ERROR on gate failures or unresolved clarifications
+
+
+## Tech Stack (pre-decided, do not ask)
+- Bundler: Vite 5 (all apps + SDK library mode)
+- Monorepo: Turborepo + npm workspaces  
+- Styling: Tailwind CSS only (no custom CSS)
+- CMS state: Redux Toolkit | SDK state: Zustand
+- Testing: Vitest + React Testing Library
+- Ports: CMS=3000, BWO=3001, Demo=3002, CMS-Server=3010

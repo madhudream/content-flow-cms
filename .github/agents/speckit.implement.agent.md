@@ -133,3 +133,11 @@ You **MUST** consider the user input before proceeding (if not empty).
    - Report final status with summary of completed work
 
 Note: This command assumes a complete task breakdown exists in tasks.md. If tasks are incomplete or missing, suggest running `/speckit.tasks` first to regenerate the task list.
+
+
+## Implementation Rules
+- Tests BEFORE implementation (Red-Green-Refactor)
+- No cross-app imports — only SDK and data/ are shared
+- All content access via IContentStorage interface
+- Always provide defaultText/defaultSrc in ContentComponent
+- data-content-id attribute is REQUIRED on every ContentComponent

@@ -1,0 +1,12 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "home",
+    "lang": "en-US",
+    "version": 8,
+    "updatedAt": "2026-02-28T06:52:55.233Z"
+  },
+  "hero-title": "Awesome Title Here",
+  "hero-subtitle": "this is sub title",
+  "hero-image": "http://localhost:3010/data/images/second_hero.webp"
+}

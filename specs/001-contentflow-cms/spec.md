@@ -7,6 +7,18 @@
 
 ---
 
+## Clarifications
+
+### Session 2026-02-27
+
+- Q: Who should be able to edit content in the CMS (authentication/authorization)? → A: No authentication in Phase 1 (local dev tool only); defer auth to Phase 2 when real storage/CDN is added
+- Q: How should the CMS handle save failures (network error, file write error, invalid JSON)? → A: Basic inline error notification only; comprehensive error handling and recovery deferred to Phase 2
+- Q: How should images be handled in the CMS for image content editing? → A: File upload to local `data/images/` folder with automatic path generation
+- Q: What should happen if the consuming app in the iframe doesn't respond or doesn't support CMS mode? → A: Show a warning banner in CMS preview area explaining the app doesn't support CMS mode; allow viewing but disable editing
+- Q: When the SDK initializes with multiple pages, should it fetch all page content files immediately or lazy-load them? → A: Fetch all registered page content files immediately on SDK initialization (eager loading)
+
+---
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 — Content Author: Edit Text on a Page (Priority: P1)
@@ -75,21 +87,26 @@ The BWO Tax Forms app reads a page metadata JSON describing form fields (labels,
 
 ### User Story 5 — Image Content Editing (Priority: P3)
 
-In the CMS, image elements with `data-content-id` can be replaced by uploading a new image URL. The SDK `<ContentComponent type="image">` renders the override URL or the `defaultSrc` prop.
+In the CMS, image elements with `data-content-id` can be replaced by uploading a new image file. The CMS uploads the file to `data/images/` via the Node.js server, which returns the generated path. The SDK `<ContentComponent type="image">` renders the override URL or the `defaultSrc` prop.
 
 **Why this priority**: Nice-to-have for completeness; text editing delivers the core value.
 
-**Independent Test**: Set an image override URL in CMS, save, reload consuming app — image changes.
+**Independent Test**: Upload an image in CMS for a content ID, save, reload consuming app — image changes to the uploaded file.
 
 **Acceptance Scenarios**:
 
-1. **Given** an image element with `contentId="hero-image"` and `defaultSrc="/img/default.png"`, **When** CMS sets override to `"/img/new.png"`, **Then** the consuming app renders `/img/new.png`.
+1. **Given** an image element with `contentId="hero-image"` and `defaultSrc="/img/default.png"`, **When** CMS user uploads a new image file, **Then** the file is saved to `data/images/{appId}-hero-image-{timestamp}.{ext}` and the content JSON is updated with the new path.
+2. **Given** the content JSON contains the uploaded image path, **When** the consuming app renders, **Then** it displays the uploaded image instead of `defaultSrc`.
 
 ---
 
 ### Edge Cases
 
-- What happens when the content JSON file is malformed? SDK falls back to `defaultText` and logs a warning.
+- What happens when the content JSON file is malformed? SDK falls back to `defaultText` and logs a warning to console.
+- What happens when CMS save operation fails (Node server error, file write error)? Display inline error notification with error message; log full error to browser console. User can retry manually.
+- What happens when image upload fails (unsupported file type, server error, disk space)? Display inline error notification; image content is not updated. User can retry upload.
+- What file types and sizes are allowed for image uploads? Accept common image formats (jpg, png, gif, svg, webp). File size limit: 5MB per image (enforced by Node server).
+- What happens when a consuming app doesn't respond to CMS postMessage initialization? After 3-second timeout, CMS displays warning banner "This app does not support CMS mode. Preview only." and disables all editing features. Preview iframe remains visible for reference.
 - What happens when two CMS users edit the same page simultaneously? Last write wins (Phase 1). Conflict detection is Phase 2.
 - What if a `content-id` exists in JSX but not in the JSON? Render `defaultText` silently.
 - What if language file is missing? Fall back to `en-US` file, then to `defaultText`.
@@ -101,23 +118,34 @@ In the CMS, image elements with `data-content-id` can be replaced by uploading a
 
 ### Functional Requirements
 
+#### In Scope (Phase 1)
+
 - **FR-001**: CMS MUST display a dashboard with registered apps as selectable cards.
 - **FR-002**: CMS MUST list pages for the selected app.
 - **FR-003**: CMS MUST render a live preview iframe/panel showing the selected page.
 - **FR-004**: CMS MUST highlight elements with `data-content-id` on hover in the preview.
 - **FR-005**: CMS MUST provide an editor side panel for the selected content element.
-- **FR-006**: CMS MUST support text and image content types.
-- **FR-007**: CMS MUST write saved content to `data/{appId}-{pageId}-{lang}.json`.
+- **FR-006**: CMS MUST support text and image content types. For images, the editor panel MUST provide a file upload interface that stores files in `data/images/` and generates a unique path (e.g., `data/images/{appId}-{contentId}-{timestamp}.{ext}`).
+- **FR-007**: CMS MUST write saved content to `data/{appId}-{pageId}-{lang}.json` via a local Node.js server.
 - **FR-008**: CMS MUST support language switching with per-locale file management.
 - **FR-009**: SDK MUST expose `ContentFlowSDK.initialize({ appId, language, storageUrl })`.
 - **FR-010**: SDK MUST expose `<ContentComponent contentId defaultText>` for React.
 - **FR-011**: SDK MUST expose `<content-component contentId defaultText>` Web Component for Angular.
 - **FR-012**: SDK MUST render `defaultText` synchronously before async content loads.
 - **FR-013**: SDK MUST support `type="image"` with `defaultSrc` prop.
-- **FR-014**: BWO Tax Forms MUST render forms from page metadata JSON.
-- **FR-015**: BWO Tax Forms MUST use `<ContentComponent>` for all label text.
-- **FR-016**: Demo App MUST have 3+ pages with `<ContentComponent>` elements.
-- **FR-017**: All apps MUST be independently runnable on separate ports.
+- **FR-014**: SDK MUST eagerly fetch all registered page content files on initialization (not lazy-load). For a typical Phase 1 configuration (5 pages × 1 locale), all content JSON files are loaded upfront to ensure instant rendering on page navigation.
+- **FR-015**: BWO Tax Forms MUST render forms from page metadata JSON.
+- **FR-016**: BWO Tax Forms MUST use `<ContentComponent>` for all label text.
+- **FR-017**: Demo App MUST have 3+ pages with `<ContentComponent>` elements.
+- **FR-018**: All apps MUST be independently runnable on separate ports.
+- **FR-019**: CMS MUST include a Node.js server on port 3010 that provides GET/POST endpoints for reading and writing local JSON content files, and a POST endpoint for uploading images to `data/images/`.
+- **FR-020**: CMS MUST display inline error notifications when save operations fail, with error details logged to browser console.
+- **FR-021**: CMS MUST detect when a consuming app in the preview iframe does not respond to `postMessage` initialization within 3 seconds and display a warning banner stating "This app does not support CMS mode. Preview only." Editing features MUST be disabled for non-responsive apps.
+
+#### Out of Scope (Phase 1)
+
+- **Authentication/Authorization**: No login, password protection, or role-based access control in Phase 1. CMS is a local development tool accessible to anyone with access to localhost. Security and identity management deferred to Phase 2 with Azure Blob Storage and CDN deployment.
+- **Advanced Error Handling**: No error recovery mechanisms (localStorage persistence, retry queues, remote error tracking). Basic inline notifications only. Comprehensive error flows deferred to Phase 2 with production CMS and CDN infrastructure.
 
 ### Key Entities
 
@@ -141,3 +169,6 @@ In the CMS, image elements with `data-content-id` can be replaced by uploading a
 - **SC-006**: BWO Tax Forms renders a 10-field form from metadata in under 100ms.
 - **SC-007**: All three apps (CMS, BWO, Demo) run simultaneously without port conflicts.
 - **SC-008**: Adding a new consuming app requires only: register in `apps.config.json` + use SDK — no CMS code changes.
+- **SC-009**: CMS Node.js server responds to GET requests for content files within 50ms for local file reads.
+- **SC-010**: Image upload (up to 2MB) completes and returns the generated path within 500ms.
+- **SC-011**: SDK initialization with 5 pages eagerly fetches all content JSON files (total ~10-20KB) in under 300ms on localhost.

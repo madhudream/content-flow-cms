@@ -1,0 +1,30 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "about",
+    "lang": "en-US",
+    "version": 2,
+    "updatedAt": "2026-02-27T00:00:00Z"
+  },
+  "about-hero-title": "What would be possible if exceptional customer support were accessible to all?",
+  "about-hero-subtitle": "Our mission is to accelerate business growth through intelligent support operations. Grounded in the realities of customer service workflows and driven by thoughtful innovation, Customer Portal helps businesses operate efficiently and delight their customers.",
+  "about-story-label": "Solving a universal problem",
+  "about-story-p1": "Each business depends on excellent customer support. It underpins satisfaction for customers and informs the decisions that shape companies. Yet most businesses never receive meaningful operational insights because support teams are overwhelmed by mundane, time consuming tasks. Companies face the same pressures. Instead of using support as a strategic asset, they get pulled into administrative work that drains focus and limits growth.",
+  "about-story-p2": "Customer Portal exists to change that dynamic. When support teams can work with speed and precision, the benefits extend across the entire business. We make that possible by automating the busywork so teams can redirect their time and expertise toward high value customer relationships.",
+  "about-mission-label": "Redefining the future of customer operations",
+  "about-story-p3": "Customer service is entering a major transformation, and support operations is one of the toughest real world domains for applied AI. The work involves messy, inconsistent customer data, complex workflows, and countless edge cases that span many conditional steps.",
+  "about-story-p4": "Solving these problems requires building systems that can adapt through real-world constraints, plan multistep workflows, and execute reliably at scale. We're committed to this challenge because we believe exceptional support should be accessible to every business, not just those with massive teams or budgets.",
+  "about-team-label": "Build with us",
+  "about-team-title": "We're a remote team spread across the globe.",
+  "about-team-p1": "The entire company comes together several times a year and we often gather in smaller groups when high bandwidth collaboration helps. We know everyone works differently, so we offer people the flexibility to work in the way that helps them move quickly and think clearly.",
+  "about-team-p2": "As part of a small team, you'll have real ownership across the stack. You won't just ship features here. Every interaction with a customer and every change you ship directly shapes how businesses operate. You'll work closely with business leaders to understand their needs, introduce new technologies, reshape workflows, and unlock growth they couldn't reach before.",
+  "about-values-label": "Our principles",
+  "about-value1-title": "Customer First",
+  "about-value1-desc": "Every decision we make starts with one question: How does this help our customers succeed?",
+  "about-value2-title": "Move Fast",
+  "about-value2-desc": "Speed matters. We ship early and often, learning and iterating based on real-world feedback.",
+  "about-value3-title": "Radical Transparency",
+  "about-value3-desc": "We believe in open communication, both internally and with our customers. No surprises, no hidden agendas.",
+  "about-value4-title": "Embrace Simplicity",
+  "about-value4-desc": "Complexity is the enemy of execution. We strive to make everything we build simple and intuitive."
+}

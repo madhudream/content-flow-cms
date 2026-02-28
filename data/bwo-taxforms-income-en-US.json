@@ -1,0 +1,18 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "income",
+    "lang": "en-US",
+    "version": 1,
+    "updatedAt": "2026-02-28T00:00:00Z"
+  },
+  "bwo-field-employer-name": "Employer or Company Name",
+  "bwo-field-employer-ein": "Employer Identification Number (EIN)",
+  "bwo-field-wages-amount": "Total Wages and Salaries (Box 1 from W-2)",
+  "bwo-field-federal-tax-withheld": "Federal Income Tax Withheld (Box 2 from W-2)",
+  "bwo-field-interest-income": "Interest Income (Form 1099-INT)",
+  "bwo-field-dividend-income": "Dividend Income (Form 1099-DIV)",
+  "bwo-field-self-employment-income": "Self-Employment Income (Schedule C)",
+  "bwo-field-rental-income": "Rental Property Income",
+  "bwo-field-other-income-description": "Describe Other Income Sources"
+}

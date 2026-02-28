@@ -1,0 +1,62 @@
+{
+  "name": "@contentflow/sdk",
+  "version": "1.0.0",
+  "description": "Framework-agnostic content delivery SDK for ContentFlow CMS",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react/index.js",
+      "types": "./dist/react/index.d.ts"
+    },
+    "./webcomponent": {
+      "import": "./dist/webcomponent/index.js",
+      "types": "./dist/webcomponent/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
+    "dev": "vite build --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^1.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "cms",
+    "content",
+    "headless",
+    "react",
+    "webcomponent"
+  ],
+  "author": "ContentFlow CMS",
+  "license": "MIT"
+}

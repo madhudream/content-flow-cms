@@ -1,0 +1,134 @@
+{
+  "pageId": "income",
+  "title": "Income Details",
+  "sections": [
+    {
+      "id": "wages-section",
+      "title": "Wages and Salaries",
+      "fields": [
+        {
+          "id": "employer-name",
+          "type": "text",
+          "label": "Employer Name",
+          "contentId": "bwo-field-employer-name",
+          "placeholder": "ABC Corporation",
+          "required": true,
+          "validation": {
+            "minLength": 2,
+            "maxLength": 100,
+            "errorMessage": "Employer name is required (2-100 characters)"
+          }
+        },
+        {
+          "id": "employer-ein",
+          "type": "text",
+          "label": "Employer Identification Number (EIN)",
+          "contentId": "bwo-field-employer-ein",
+          "placeholder": "XX-XXXXXXX",
+          "required": true,
+          "validation": {
+            "pattern": "^\\d{2}-\\d{7}$",
+            "errorMessage": "EIN must be in format XX-XXXXXXX"
+          }
+        },
+        {
+          "id": "wages-amount",
+          "type": "number",
+          "label": "Total Wages (Box 1)",
+          "contentId": "bwo-field-wages-amount",
+          "placeholder": "50000.00",
+          "required": true,
+          "validation": {
+            "min": 0,
+            "max": 999999999,
+            "errorMessage": "Please enter a valid wage amount"
+          }
+        },
+        {
+          "id": "federal-tax-withheld",
+          "type": "number",
+          "label": "Federal Income Tax Withheld (Box 2)",
+          "contentId": "bwo-field-federal-tax-withheld",
+          "placeholder": "5000.00",
+          "required": true,
+          "validation": {
+            "min": 0,
+            "max": 999999999,
+            "errorMessage": "Please enter a valid amount"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interest-section",
+      "title": "Interest and Dividend Income",
+      "fields": [
+        {
+          "id": "interest-income",
+          "type": "number",
+          "label": "Interest Income (Form 1099-INT)",
+          "contentId": "bwo-field-interest-income",
+          "placeholder": "500.00",
+          "validation": {
+            "min": 0,
+            "max": 999999999,
+            "errorMessage": "Please enter a valid amount"
+          }
+        },
+        {
+          "id": "dividend-income",
+          "type": "number",
+          "label": "Dividend Income (Form 1099-DIV)",
+          "contentId": "bwo-field-dividend-income",
+          "placeholder": "250.00",
+          "validation": {
+            "min": 0,
+            "max": 999999999,
+            "errorMessage": "Please enter a valid amount"
+          }
+        }
+      ]
+    },
+    {
+      "id": "other-income-section",
+      "title": "Other Income",
+      "fields": [
+        {
+          "id": "self-employment-income",
+          "type": "number",
+          "label": "Self-Employment Income",
+          "contentId": "bwo-field-self-employment-income",
+          "placeholder": "10000.00",
+          "validation": {
+            "min": 0,
+            "max": 999999999,
+            "errorMessage": "Please enter a valid amount"
+          }
+        },
+        {
+          "id": "rental-income",
+          "type": "number",
+          "label": "Rental Income",
+          "contentId": "bwo-field-rental-income",
+          "placeholder": "12000.00",
+          "validation": {
+            "min": 0,
+            "max": 999999999,
+            "errorMessage": "Please enter a valid amount"
+          }
+        },
+        {
+          "id": "other-income-description",
+          "type": "textarea",
+          "label": "Other Income Description",
+          "contentId": "bwo-field-other-income-description",
+          "placeholder": "Describe any other income sources...",
+          "validation": {
+            "maxLength": 500,
+            "errorMessage": "Description must not exceed 500 characters"
+          }
+        }
+      ]
+    }
+  ]
+}

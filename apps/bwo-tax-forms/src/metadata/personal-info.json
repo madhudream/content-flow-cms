@@ -1,0 +1,149 @@
+{
+  "pageId": "personal-info",
+  "title": "Personal Information",
+  "sections": [
+    {
+      "id": "name-section",
+      "title": "Full Name",
+      "fields": [
+        {
+          "id": "first-name",
+          "type": "text",
+          "label": "First Name",
+          "contentId": "bwo-field-first-name",
+          "placeholder": "Enter first name",
+          "required": true,
+          "validation": {
+            "minLength": 1,
+            "maxLength": 50,
+            "errorMessage": "First name is required (1-50 characters)"
+          }
+        },
+        {
+          "id": "middle-initial",
+          "type": "text",
+          "label": "Middle Initial",
+          "contentId": "bwo-field-middle-initial",
+          "placeholder": "M",
+          "validation": {
+            "maxLength": 1,
+            "pattern": "^[A-Z]$",
+            "errorMessage": "Must be a single uppercase letter"
+          }
+        },
+        {
+          "id": "last-name",
+          "type": "text",
+          "label": "Last Name",
+          "contentId": "bwo-field-last-name",
+          "placeholder": "Enter last name",
+          "required": true,
+          "validation": {
+            "minLength": 1,
+            "maxLength": 50,
+            "errorMessage": "Last name is required (1-50 characters)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "contact-section",
+      "title": "Contact Information",
+      "fields": [
+        {
+          "id": "email",
+          "type": "email",
+          "label": "Email Address",
+          "contentId": "bwo-field-email",
+          "placeholder": "your.email@example.com",
+          "required": true,
+          "validation": {
+            "errorMessage": "Please enter a valid email address"
+          }
+        },
+        {
+          "id": "phone",
+          "type": "tel",
+          "label": "Phone Number",
+          "contentId": "bwo-field-phone",
+          "placeholder": "(555) 123-4567",
+          "required": true,
+          "validation": {
+            "pattern": "^\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$",
+            "errorMessage": "Please enter a valid phone number"
+          }
+        },
+        {
+          "id": "ssn",
+          "type": "text",
+          "label": "Social Security Number",
+          "contentId": "bwo-field-ssn",
+          "placeholder": "XXX-XX-XXXX",
+          "required": true,
+          "validation": {
+            "pattern": "^\\d{3}-\\d{2}-\\d{4}$",
+            "errorMessage": "SSN must be in format XXX-XX-XXXX"
+          }
+        }
+      ]
+    },
+    {
+      "id": "address-section",
+      "title": "Mailing Address",
+      "fields": [
+        {
+          "id": "street-address",
+          "type": "text",
+          "label": "Street Address",
+          "contentId": "bwo-field-street-address",
+          "placeholder": "123 Main Street",
+          "required": true,
+          "validation": {
+            "minLength": 5,
+            "maxLength": 200,
+            "errorMessage": "Street address is required (5-200 characters)"
+          }
+        },
+        {
+          "id": "city",
+          "type": "text",
+          "label": "City",
+          "contentId": "bwo-field-city",
+          "placeholder": "Springfield",
+          "required": true,
+          "validation": {
+            "minLength": 2,
+            "maxLength": 100,
+            "errorMessage": "City is required (2-100 characters)"
+          }
+        },
+        {
+          "id": "state",
+          "type": "select",
+          "label": "State",
+          "contentId": "bwo-field-state",
+          "required": true,
+          "options": [
+            { "value": "AL", "label": "Alabama" },
+            { "value": "CA", "label": "California" },
+            { "value": "FL", "label": "Florida" },
+            { "value": "NY", "label": "New York" },
+            { "value": "TX", "label": "Texas" }
+          ]
+        },
+        {
+          "id": "zip-code",
+          "type": "text",
+          "label": "ZIP Code",
+          "contentId": "bwo-field-zip-code",
+          "placeholder": "12345",
+          "required": true,
+          "validation": {
+            "pattern": "^\\d{5}(?:-\\d{4})?$",
+            "errorMessage": "ZIP code must be 5 digits or 9 digits (12345 or 12345-6789)"
+          }
+        }
+      ]
+    }
+  ]
+}

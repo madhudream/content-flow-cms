@@ -41,6 +41,12 @@
       "supportedLanguages": ["en-US", "es-ES"],
       "pages": [
         {
+          "id": "home",
+          "name": "Getting Started",
+          "previewPort": 3001,
+          "previewPath": "/"
+        },
+        {
           "id": "personal-info",
           "name": "Personal Information",
           "previewPort": 3001,
@@ -51,18 +57,33 @@
           "name": "Income Details",
           "previewPort": 3001,
           "previewPath": "/income"
+        }
+      ]
+    },
+    {
+      "id": "customer-portal",
+      "name": "Customer Portal",
+      "description": "Modern customer portal with elegant design",
+      "defaultLanguage": "en-US",
+      "supportedLanguages": ["en-US"],
+      "pages": [
+        {
+          "id": "home",
+          "name": "Home",
+          "previewPort": 3003,
+          "previewPath": "/"
         },
         {
-          "id": "deductions",
-          "name": "Deductions",
-          "previewPort": 3001,
-          "previewPath": "/deductions"
+          "id": "about",
+          "name": "About",
+          "previewPort": 3003,
+          "previewPath": "/about"
         },
         {
-          "id": "summary",
-          "name": "Summary & Submit",
-          "previewPort": 3001,
-          "previewPath": "/summary"
+          "id": "customers",
+          "name": "Customers",
+          "previewPort": 3003,
+          "previewPath": "/customers"
         }
       ]
     }

@@ -1,0 +1,50 @@
+{
+  "pageId": "home",
+  "title": "Welcome to BWO Tax Forms",
+  "sections": [
+    {
+      "id": "welcome-section",
+      "title": "Getting Started",
+      "fields": [
+        {
+          "id": "taxpayer-name",
+          "type": "text",
+          "label": "Full Legal Name",
+          "contentId": "bwo-field-taxpayer-name",
+          "placeholder": "Enter your full legal name",
+          "required": true,
+          "validation": {
+            "minLength": 2,
+            "maxLength": 100,
+            "errorMessage": "Please enter your full legal name (2-100 characters)"
+          }
+        },
+        {
+          "id": "tax-year",
+          "type": "select",
+          "label": "Tax Year",
+          "contentId": "bwo-field-tax-year",
+          "required": true,
+          "options": [
+            { "value": "2025", "label": "2025" },
+            { "value": "2024", "label": "2024" },
+            { "value": "2023", "label": "2023" }
+          ]
+        },
+        {
+          "id": "filing-status",
+          "type": "select",
+          "label": "Filing Status",
+          "contentId": "bwo-field-filing-status",
+          "required": true,
+          "options": [
+            { "value": "single", "label": "Single" },
+            { "value": "married-joint", "label": "Married Filing Jointly" },
+            { "value": "married-separate", "label": "Married Filing Separately" },
+            { "value": "head-household", "label": "Head of Household" }
+          ]
+        }
+      ]
+    }
+  ]
+}

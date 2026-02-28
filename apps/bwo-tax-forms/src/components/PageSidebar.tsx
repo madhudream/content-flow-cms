@@ -18,8 +18,12 @@ const pages: PageInfo[] = [
 export function PageSidebar() {
   const location = useLocation();
 
+  const openInNewTab = () => {
+    window.open(window.location.href, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 min-h-screen p-6">
+    <aside className="w-64 bg-white border-r border-gray-200 min-h-screen p-6 flex flex-col">
       <div className="mb-8">
         <h2 className="text-lg font-bold text-gray-900">BWO Tax Forms</h2>
         <p className="text-sm text-gray-600 mt-1">Form Sections</p>
@@ -67,10 +71,23 @@ export function PageSidebar() {
         </ul>
       </nav>
 
-      <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-        <p className="text-xs text-gray-600">
-          <strong>Note:</strong> All form labels can be edited in the CMS
-        </p>
+      <div className="mt-auto space-y-3">
+        <button
+          onClick={openInNewTab}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all duration-200 text-sm font-medium shadow-sm hover:shadow-md"
+          title="Open in new tab"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          <span>Open in New Tab</span>
+        </button>
+        
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <p className="text-xs text-gray-600">
+            <strong>Note:</strong> All form labels can be edited in the CMS
+          </p>
+        </div>
       </div>
     </aside>
   );

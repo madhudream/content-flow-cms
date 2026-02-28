@@ -16,6 +16,7 @@ export function PreviewPanel() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [ackReceived, setAckReceived] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
+  const timeoutRef = useRef<number | null>(null);
   
   const { apps } = useAppSelector((state) => state.apps);
   const { selectedAppId, selectedPageId, selectedLanguage, viewportMode } = useAppSelector((state) => state.ui);
@@ -39,6 +40,11 @@ export function PreviewPanel() {
       setAckReceived(false);
       setShowWarning(false);
 
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
       // Send INIT message to iframe
       setTimeout(() => {
         iframeRef.current?.contentWindow?.postMessage(
@@ -47,17 +53,27 @@ export function PreviewPanel() {
         );
 
         // Set 3-second timeout for ACK
-        setTimeout(() => {
-          if (!ackReceived) {
-            setShowWarning(true);
-          }
+        timeoutRef.current = window.setTimeout(() => {
+          setAckReceived((currentAckReceived) => {
+            if (!currentAckReceived) {
+              setShowWarning(true);
+            }
+            return currentAckReceived;
+          });
         }, 3000);
       }, 100);
     };
 
-    iframeRef.current.addEventListener('load', handleIframeLoad);
-    return () => iframeRef.current?.removeEventListener('load', handleIframeLoad);
-  }, [selectedPage, ackReceived]);
+    const iframe = iframeRef.current;
+    iframe.addEventListener('load', handleIframeLoad);
+    
+    return () => {
+      iframe?.removeEventListener('load', handleIframeLoad);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [selectedPage]);
 
   // Listen for postMessage events from iframe
   useEffect(() => {

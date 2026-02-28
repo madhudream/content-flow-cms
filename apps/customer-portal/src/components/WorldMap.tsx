@@ -3,22 +3,23 @@ import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 
 interface CustomerLocation {
-  lon: number;  // longitude
-  lat: number;  // latitude
+  lon: number;
+  lat: number;
   label: string;
+}
+
+interface ClusterConfig {
+  name: string;
+  center: [number, number];
+  count: number;
+  radiusKm: number;
 }
 
 interface WorldMapProps {
   customerLocations?: CustomerLocation[];
-  dotColor?: string;
-  markerColor?: string;
-  dotOpacity?: number;
-  dotRadius?: number;
-  markerRadius?: number;
   backgroundColor?: string;
   width?: number;
   height?: number;
-  spacing?: number; // px spacing between dots (smaller = denser)
 }
 
 export default function WorldMap({
@@ -32,15 +33,9 @@ export default function WorldMap({
     { lon: 103.8198, lat: 1.3521, label: 'Singapore' },
     { lon: 151.2093, lat: -33.8688, label: 'Sydney' }
   ],
-  dotColor = '#2f2f2f',
-  markerColor = '#f5c542',
-  dotOpacity = 0.95,
-  dotRadius = 1.8,
-  markerRadius = 6,
   backgroundColor = '#151515',
-  width = 1400,
-  height = 800,
-  spacing = 10
+  width = 1600,
+  height = 900
 }: WorldMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -48,14 +43,38 @@ export default function WorldMap({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Clear previous SVG if exists
+    // Clear previous SVG
     if (svgRef.current) {
       svgRef.current.remove();
     }
 
     const container = containerRef.current;
 
-    // Create SVG using D3
+    // Configuration
+    const SPACING = 14;
+    const DOT_R = 2.0;
+    const OCEAN_DOT = '#1f1f22';
+    const LAND_DOT = '#2e2e33';
+    const HI = '#f5c542';
+    const OCEAN_OPACITY = 0.55;
+    const LAND_OPACITY = 0.95;
+    const GLOBAL_SCATTER_COUNT = 45; // Scattered highlights across the world
+
+    // Helper functions
+    const snapPx = (v: number, spacing: number) => Math.round(v / spacing) * spacing;
+    
+    const kmToDegLat = (km: number) => km / 110.574;
+    const kmToDegLon = (km: number, latDeg: number) => 
+      km / (111.32 * Math.cos((latDeg * Math.PI) / 180));
+    
+    const randInCircle = () => {
+      const t = 2 * Math.PI * Math.random();
+      const u = Math.random() + Math.random();
+      const r = u > 1 ? 2 - u : u;
+      return { dx: r * Math.cos(t), dy: r * Math.sin(t) };
+    };
+
+    // Create SVG
     const svg = d3
       .select(container)
       .append('svg')
@@ -66,117 +85,202 @@ export default function WorldMap({
 
     svgRef.current = svg.node();
 
-    // Background rectangle
+    // Background
     svg.append('rect')
       .attr('width', '100%')
       .attr('height', '100%')
       .attr('fill', backgroundColor);
 
-    // Load world topology and render
+    // Filters
+    const defs = svg.append('defs');
+
+    // Glow filter
+    const glow = defs
+      .append('filter')
+      .attr('id', 'customer-glow')
+      .attr('x', '-50%')
+      .attr('y', '-50%')
+      .attr('width', '200%')
+      .attr('height', '200%');
+    
+    glow
+      .append('feGaussianBlur')
+      .attr('stdDeviation', 2.8)
+      .attr('result', 'blur');
+    
+    glow
+      .append('feColorMatrix')
+      .attr('in', 'blur')
+      .attr('type', 'matrix')
+      .attr('values', '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 2.2 0')
+      .attr('result', 'bloom');
+    
+    const merge = glow.append('feMerge');
+    merge.append('feMergeNode').attr('in', 'bloom');
+    merge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+    // Vignette
+    const vignette = defs.append('radialGradient').attr('id', 'customer-vignette');
+    vignette.append('stop').attr('offset', '55%').attr('stop-color', 'rgba(0,0,0,0)');
+    vignette.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(0,0,0,0.65)');
+
+    // Load and render
     (async () => {
       try {
-        // Load world-atlas land topology
         const topo: any = await d3.json(
           'https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json'
         );
 
         const land = feature(topo, topo.objects.land) as any as GeoJSON.Feature<GeoJSON.MultiPolygon>;
 
-        // Create projection
+        // Use Natural Earth projection for better aesthetics
         const projection = d3
-          .geoEquirectangular()
-          .fitSize([width * 0.92, height * 0.92], land);
+          .geoNaturalEarth1()
+          .fitExtent(
+            [[60, 80], [width - 60, height - 120]],
+            land
+          );
 
-        // Point-in-polygon test for land
         const isLand = (lon: number, lat: number) => d3.geoContains(land, [lon, lat]);
 
-        // Convert customer locations to pixel coordinates
-        const customerXY = customerLocations
-          .map(({ lon, lat, label }) => {
-            const coords = projection([lon, lat]);
-            return coords ? { x: coords[0], y: coords[1], label } : null;
-          })
-          .filter((c): c is { x: number; y: number; label: string } => c !== null);
+        // Generate highlights
+        const highlightPx = new Set<string>();
 
-        // Generate dot grid
-        const circles: Array<{ x: number; y: number; isHighlight: boolean }> = [];
-        const highlightThreshold2 = (spacing * 0.6) * (spacing * 0.6);
+        const addHighlightLonLat = (lon: number, lat: number) => {
+          const p = projection([lon, lat]);
+          if (!p) return;
+          const x = snapPx(p[0], SPACING);
+          const y = snapPx(p[1], SPACING);
+          highlightPx.add(`${x},${y}`);
+        };
 
-        for (let y = 0; y <= height; y += spacing) {
-          for (let x = 0; x <= width; x += spacing) {
-            if (!projection.invert) continue;
-            const lonlat = projection.invert([x, y]);
-            if (!lonlat) continue;
+        // Add customer location clusters
+        const clusters: ClusterConfig[] = customerLocations.map(loc => ({
+          name: loc.label,
+          center: [loc.lon, loc.lat],
+          count: 6, // dots per cluster
+          radiusKm: 280
+        }));
 
-            const [lon, lat] = lonlat;
-            if (!isLand(lon, lat)) continue;
+        for (const c of clusters) {
+          const [clon, clat] = c.center;
+          const addedForCluster = new Set<string>();
+          
+          for (let i = 0; i < c.count * 4; i++) {
+            if (addedForCluster.size >= c.count) break;
+            
+            const { dx, dy } = randInCircle();
+            const dKm = c.radiusKm * Math.random();
+            const dLat = kmToDegLat(dKm * dy);
+            const dLon = kmToDegLon(dKm * dx, clat);
 
-            // Check if near any customer location
-            let isHighlight = false;
-            for (const c of customerXY) {
-              const dx = x - c.x;
-              const dy = y - c.y;
-              if (dx * dx + dy * dy < highlightThreshold2) {
-                isHighlight = true;
-                break;
+            const lon = clon + dLon;
+            const lat = clat + dLat;
+
+            if (isLand(lon, lat)) {
+              const before = highlightPx.size;
+              addHighlightLonLat(lon, lat);
+              if (highlightPx.size > before) {
+                addedForCluster.add(`${lon},${lat}`);
               }
             }
+          }
+          
+          // Ensure center is highlighted
+          addHighlightLonLat(clon, clat);
+        }
 
-            circles.push({ x, y, isHighlight });
+        // Add scattered global highlights
+        let added = 0;
+        let attempts = 0;
+        while (added < GLOBAL_SCATTER_COUNT && attempts < GLOBAL_SCATTER_COUNT * 60) {
+          attempts++;
+          const lon = -180 + Math.random() * 360;
+          const lat = -60 + Math.random() * 140;
+          
+          if (!isLand(lon, lat)) continue;
+
+          const before = highlightPx.size;
+          addHighlightLonLat(lon, lat);
+          if (highlightPx.size > before) added++;
+        }
+
+        // Generate dot grid
+        const dots: Array<{ x: number; y: number; kind: 'ocean' | 'land' | 'hi' }> = [];
+
+        for (let y = 0; y <= height; y += SPACING) {
+          for (let x = 0; x <= width; x += SPACING) {
+            const lonlat = projection.invert?.([x, y]);
+            if (!lonlat) continue;
+
+            if (highlightPx.has(`${x},${y}`)) {
+              dots.push({ x, y, kind: 'hi' });
+              continue;
+            }
+
+            const [lon, lat] = lonlat;
+            dots.push({ x, y, kind: isLand(lon, lat) ? 'land' : 'ocean' });
           }
         }
 
-        // Draw dots
-        svg
-          .append('g')
-          .attr('opacity', dotOpacity)
+        // Render layers
+        const g = svg.append('g');
+
+        // Ocean dots
+        g.append('g')
+          .attr('opacity', OCEAN_OPACITY)
           .selectAll('circle')
-          .data(circles)
+          .data(dots.filter(d => d.kind === 'ocean'))
           .enter()
           .append('circle')
-          .attr('cx', (d) => d.x)
-          .attr('cy', (d) => d.y)
-          .attr('r', dotRadius)
-          .attr('fill', (d) => (d.isHighlight ? markerColor : dotColor));
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y)
+          .attr('r', DOT_R)
+          .attr('fill', OCEAN_DOT);
 
-        // Draw customer markers on top with animation
-        const markerGroup = svg.append('g').attr('class', 'customer-markers');
+        // Land dots
+        g.append('g')
+          .attr('opacity', LAND_OPACITY)
+          .selectAll('circle')
+          .data(dots.filter(d => d.kind === 'land'))
+          .enter()
+          .append('circle')
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y)
+          .attr('r', DOT_R)
+          .attr('fill', LAND_DOT);
 
-        // Add CSS animation for pulse effect
-        const style = document.createElement('style');
-        style.textContent = `
-          @keyframes pulse-marker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-          }
-        `;
-        document.head.appendChild(style);
+        // Highlighted dots with glow
+        g.append('g')
+          .selectAll('circle')
+          .data(dots.filter(d => d.kind === 'hi'))
+          .enter()
+          .append('circle')
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y)
+          .attr('r', DOT_R + 0.4)
+          .attr('fill', HI)
+          .attr('filter', 'url(#customer-glow)');
 
-        customerXY.forEach((loc, i) => {
-          markerGroup
-            .append('circle')
-            .attr('cx', loc.x)
-            .attr('cy', loc.y)
-            .attr('r', markerRadius)
-            .attr('fill', markerColor)
-            .style('animation', 'pulse-marker 2s ease-in-out infinite')
-            .style('animation-delay', `${i * 0.2}s`)
-            .append('title')
-            .text(loc.label);
-        });
+        // Vignette overlay
+        svg
+          .append('rect')
+          .attr('width', '100%')
+          .attr('height', '100%')
+          .attr('fill', 'url(#customer-vignette)')
+          .style('pointer-events', 'none');
 
       } catch (error) {
         console.error('Failed to load world topology:', error);
       }
     })();
 
-    // Cleanup
     return () => {
       if (svgRef.current) {
         svgRef.current.remove();
       }
     };
-  }, [customerLocations, dotColor, markerColor, dotOpacity, dotRadius, markerRadius, backgroundColor, width, height, spacing]);
+  }, [customerLocations, backgroundColor, width, height]);
 
   return (
     <div 

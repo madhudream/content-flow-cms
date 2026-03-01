@@ -9,7 +9,7 @@ import { enableCMSMode } from './services/cmsMode'
 await ContentFlowSDK.initialize({
   appId: 'customer-portal',
   language: 'en-US',
-  storageUrl: 'http://localhost:3010/api/content',
+  storageUrl: '/api/content',
   pages: ['home', 'about', 'customers'],
 });
 

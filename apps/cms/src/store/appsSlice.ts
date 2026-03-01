@@ -15,7 +15,7 @@ const initialState: AppsState = {
 
 // Thunk to fetch apps.config.json from the server
 export const fetchApps = createAsyncThunk('apps/fetchApps', async () => {
-  const response = await fetch('http://localhost:3010/api/apps');
+  const response = await fetch('/api/apps');
   if (!response.ok) {
     throw new Error(`Failed to fetch apps config: ${response.statusText}`);
   }

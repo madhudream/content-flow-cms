@@ -12,6 +12,7 @@ ContentFlow CMS is a multi-app monorepo for editable content management and deli
 
 ## Architecture Principles (from Constitution)
 
+
 - **Library-First**: SDK has zero framework imports in its core. All framework-specific code lives in `packages/sdk/src/react/` or `packages/sdk/src/webcomponent/`.
 - **Content-ID as Contract**: Never remove or rename a `contentId` once used. Always provide `defaultText` in `<ContentComponent>`.
 - **SOLID & KISS**: Single responsibility per module. No abstraction without a concrete use case. Flat JSON over nested.
@@ -42,11 +43,19 @@ ContentFlow CMS is a multi-app monorepo for editable content management and deli
 - Hooks: `useState`, `useEffect`, `useCallback`, `useMemo` — prefer Zustand selectors in SDK, RTK selectors in CMS
 - No class components
 - Props interfaces named `{ComponentName}Props`
+- Make components composable and reusable where possible (e.g. `ContentComponent`)
+- Not more than 150-200 lines per component file
 
 ### Styling
 - Tailwind CSS utility classes only in all apps
 - No custom CSS files unless Tailwind cannot achieve the requirement
 - Use Tailwind `group`, `peer`, and `data-*` variants for interactive states
+
+### App creation for Monorepo
+- Use `npm create` or `npx` with Vite or other tools to scaffold new apps within the monorepo
+- Follow existing app structure and conventions for consistency
+
+
 
 ### Content Components
 
@@ -175,3 +184,5 @@ Specs live in `specs/{###-feature-name}/`.
 - CDN publish workflow
 - Real-time collaboration with conflict detection
 - Visual diff between locale versions
+
+

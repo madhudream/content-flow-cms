@@ -1,4 +1,3 @@
-import React from 'react';
 import { ContentComponent } from '@contentflow/sdk/react';
 
 export function Home() {

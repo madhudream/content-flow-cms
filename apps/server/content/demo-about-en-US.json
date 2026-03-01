@@ -1,0 +1,13 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "about",
+    "lang": "en-US",
+    "version": 1,
+    "updatedAt": "2026-02-27T00:00:00Z"
+  },
+  "about-title": "About ContentFlow CMS",
+  "about-intro": "ContentFlow is a modern, framework-agnostic content management system designed for developers who need flexibility and content authors who need simplicity.",
+  "mission-title": "Our Mission",
+  "mission-description": "We believe content editing should be visual, intuitive, and accessible to everyone, while giving developers complete freedom to build with their preferred tools and frameworks."
+}

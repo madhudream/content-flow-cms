@@ -9,7 +9,7 @@ import App from './App.tsx';
 await ContentFlowSDK.initialize({
   appId: 'bwo-taxforms',
   language: 'en-US',
-  storageUrl: 'http://localhost:3010/api/content',
+  storageUrl: '/api/content',
   pages: ['home', 'personal-info', 'income'],
 });
 

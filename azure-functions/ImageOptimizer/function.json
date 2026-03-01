@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "blob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "contentflow-content/images/original/{name}",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}

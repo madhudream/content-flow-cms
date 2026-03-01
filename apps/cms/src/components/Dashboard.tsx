@@ -16,7 +16,7 @@ import {
 // Map app IDs to their corresponding icons
 const getAppIcon = (appId: string) => {
   const iconMap: Record<string, typeof FileText> = {
-    'demo': FileText,
+    'demo': LayoutDashboard,
     'bwo-taxforms': Calculator,
     'customer-portal': Users,
   };

@@ -4,7 +4,7 @@ import { FormPage } from './components/FormPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/bwo">
       <div className="flex min-h-screen bg-gray-50">
         <PageSidebar />
         <main className="flex-1">

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ContentComponent } from '@contentflow/sdk/react';
 
@@ -15,7 +14,7 @@ export function Header() {
             <ContentComponent
               contentId="site-title"
               pageId="home"
-              defaultText="Demo App"
+              defaultText="Business Solutions"
               as="span"
               data-content-id="site-title"
             />

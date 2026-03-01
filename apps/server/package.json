@@ -1,0 +1,29 @@
+{
+  "name": "contentflow-server",
+  "version": "1.0.0",
+  "description": "Unified Bun server hosting all ContentFlow apps and APIs",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.0.1",
+    "@azure/storage-blob": "^12.17.0",
+    "@azure/arm-cdn": "^9.1.0",
+    "sharp": "^0.33.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

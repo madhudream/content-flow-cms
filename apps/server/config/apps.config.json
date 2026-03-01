@@ -1,0 +1,79 @@
+{
+  "apps": [
+    {
+      "id": "demo",
+      "name": "Business Solutions",
+      "description": "Enterprise web platform for customer engagement and service delivery",
+      "defaultLanguage": "en-US",
+      "supportedLanguages": ["en-US", "es-ES", "fr-FR"],
+      "basePath": "/demo",
+      "pages": [
+        {
+          "id": "home",
+          "name": "Home",
+          "previewPath": "/"
+        },
+        {
+          "id": "about",
+          "name": "About",
+          "previewPath": "/about"
+        },
+        {
+          "id": "contact",
+          "name": "Contact",
+          "previewPath": "/contact"
+        }
+      ]
+    },
+    {
+      "id": "bwo-taxforms",
+      "name": "BWO Tax Forms",
+      "description": "Metadata-driven tax form application for BWO clients",
+      "defaultLanguage": "en-US",
+      "supportedLanguages": ["en-US", "es-ES"],
+      "basePath": "/bwo",
+      "pages": [
+        {
+          "id": "home",
+          "name": "Getting Started",
+          "previewPath": "/"
+        },
+        {
+          "id": "personal-info",
+          "name": "Personal Information",
+          "previewPath": "/personal-info"
+        },
+        {
+          "id": "income",
+          "name": "Income Details",
+          "previewPath": "/income"
+        }
+      ]
+    },
+    {
+      "id": "customer-portal",
+      "name": "Customer Portal",
+      "description": "Modern customer portal with elegant design",
+      "defaultLanguage": "en-US",
+      "supportedLanguages": ["en-US"],
+      "basePath": "/portal",
+      "pages": [
+        {
+          "id": "home",
+          "name": "Home",
+          "previewPath": "/"
+        },
+        {
+          "id": "about",
+          "name": "About",
+          "previewPath": "/about"
+        },
+        {
+          "id": "customers",
+          "name": "Customers",
+          "previewPath": "/customers"
+        }
+      ]
+    }
+  ]
+}

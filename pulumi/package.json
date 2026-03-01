@@ -1,0 +1,13 @@
+{
+    "name": "contentflow-cms",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@pulumi/azure-native": "^3.14.0",
+        "@pulumi/docker": "^4.11.0",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}

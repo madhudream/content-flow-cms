@@ -6,7 +6,7 @@ import Navigation from './components/Navigation';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/portal">
       <div className="min-h-screen bg-white">
         <Navigation />
         <Routes>

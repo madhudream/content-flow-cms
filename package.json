@@ -4,10 +4,20 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:deploy": "node scripts/build-for-deploy.js",
     "dev": "turbo run dev",
+    "dev:server": "bun --cwd apps/server run dev",
+    "start:server": "bun --cwd apps/server run start",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "infra:install": "cd pulumi && npm install",
+    "infra:preview": "cd pulumi && pulumi preview",
+    "infra:up": "cd pulumi && pulumi up",
+    "infra:destroy": "cd pulumi && pulumi destroy",
+    "infra:stack": "cd pulumi && pulumi stack",
+    "infra:config": "cd pulumi && pulumi config",
+    "deploy": "npm run build:deploy && npm run infra:up"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.19.0",

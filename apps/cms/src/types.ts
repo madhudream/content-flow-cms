@@ -3,7 +3,6 @@
 export interface Page {
   id: string;
   name: string;
-  previewPort: number;
   previewPath: string;
 }
 
@@ -13,6 +12,7 @@ export interface App {
   description: string;
   defaultLanguage: string;
   supportedLanguages: string[];
+  basePath: string;
   pages: Page[];
 }
 

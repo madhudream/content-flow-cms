@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { updateDirtyContent, clearDirtyContent, saveContent, resetSaveStatus } from '../store/contentSlice';
 import { closeEditor } from '../store/uiSlice';
+import { ImagePicker } from './ImagePicker';
 
 export function EditorPanel() {
   const dispatch = useAppDispatch();
@@ -12,6 +13,7 @@ export function EditorPanel() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'success' | 'error'>('idle');
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [imagePickerOpen, setImagePickerOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const contentKey = selectedAppId && selectedPageId && selectedLanguage
@@ -93,7 +95,7 @@ export function EditorPanel() {
       formData.append('appId', selectedAppId);
       formData.append('contentId', selectedContentId);
 
-      const response = await fetch('http://localhost:3010/api/images', {
+      const response = await fetch('/api/images', {
         method: 'POST',
         body: formData,
       });
@@ -104,7 +106,7 @@ export function EditorPanel() {
       }
 
       const data = await response.json();
-      const imagePath = `http://localhost:3010${data.path}`;
+      const imagePath = data.path; // Path is already relative/absolute from server
 
       // Update local value and dirty content
       setLocalValue(imagePath);
@@ -123,6 +125,14 @@ export function EditorPanel() {
       fileInputRef.current.value = '';
     }
   };
+
+  const handleImageSelected = useCallback((imageUrl: string) => {
+    if (!selectedContentId) return;
+    
+    setLocalValue(imageUrl);
+    dispatch(updateDirtyContent({ contentId: selectedContentId, value: imageUrl }));
+    setImagePickerOpen(false);
+  }, [selectedContentId, dispatch]);
 
   const isImageType = elementType === 'image';
 
@@ -190,6 +200,27 @@ export function EditorPanel() {
                 </div>
               </div>
             )}
+
+            {/* Select from Gallery Button */}
+            <button
+              onClick={() => setImagePickerOpen(true)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all duration-200 shadow-md hover:shadow-lg font-semibold"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Select from Gallery
+            </button>
+
+            {/* Divider */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500 font-medium">or upload new</span>
+              </div>
+            </div>
 
             {/* File Upload Area */}
             <div 
@@ -353,6 +384,13 @@ export function EditorPanel() {
           </button>
         </div>
       </div>
+
+      {/* ImagePicker Modal */}
+      <ImagePicker
+        isOpen={imagePickerOpen}
+        onClose={() => setImagePickerOpen(false)}
+        onSelect={handleImageSelected}
+      />
     </aside>
   );
 }

@@ -1,0 +1,10 @@
+name: contentflow-cms
+description: Azure infrastructure for ContentFlow CMS
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: azure-typescript

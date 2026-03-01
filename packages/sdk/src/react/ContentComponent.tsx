@@ -11,9 +11,9 @@ export interface ContentComponentProps {
   contentId: string;
 
   /**
-   * Page identifier - required to look up content
+   * Page identifier - optional, will use active page if not provided
    */
-  pageId: string;
+  pageId?: string;
 
   /**
    * Default text to display when no override exists

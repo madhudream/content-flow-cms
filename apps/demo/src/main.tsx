@@ -9,7 +9,7 @@ import App from './App.tsx';
 await ContentFlowSDK.initialize({
   appId: 'demo',
   language: 'en-US',
-  storageUrl: 'http://localhost:3010/api/content',
+  storageUrl: '/api/content',
   pages: ['home', 'about', 'contact'],
 });
 

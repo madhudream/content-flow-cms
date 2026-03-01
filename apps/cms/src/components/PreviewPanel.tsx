@@ -125,7 +125,7 @@ export function PreviewPanel() {
     );
   }
 
-  const iframeSrc = `http://localhost:${selectedPage.previewPort}${selectedPage.previewPath}?cms-mode=true`;
+  const iframeSrc = `${selectedApp.basePath}${selectedPage.previewPath}?cms-mode=true`;
 
   return (
     <div className="flex-1 flex flex-col bg-gradient-to-br from-gray-50 to-gray-100">

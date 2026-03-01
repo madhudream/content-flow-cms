@@ -22,7 +22,7 @@ export const fetchContent = createAsyncThunk(
   async (params: { appId: string; pageId: string; lang: string }) => {
     const { appId, pageId, lang } = params;
     const filename = `${appId}-${pageId}-${lang}.json`;
-    const response = await fetch(`http://localhost:3010/api/content/${filename}`);
+    const response = await fetch(`/api/content/${filename}`);
     
     if (!response.ok) {
       // Return empty content for 404 (file doesn't exist yet)
@@ -72,7 +72,7 @@ export const saveContent = createAsyncThunk(
       ...updatedContent,
     };
     
-    const response = await fetch(`http://localhost:3010/api/content/${filename}`, {
+    const response = await fetch(`/api/content/${filename}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,0 +1,12 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "home",
+    "lang": "en-US",
+    "version": 1,
+    "updatedAt": "2026-02-28T00:00:00Z"
+  },
+  "bwo-field-taxpayer-name": "Full Legal Name (as shown on ID)",
+  "bwo-field-tax-year": "Tax Year",
+  "bwo-field-filing-status": "Choose Your Filing Status"
+}

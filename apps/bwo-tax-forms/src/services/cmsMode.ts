@@ -3,10 +3,6 @@
  * Handles postMessage communication with CMS parent window
  */
 
-interface CMSInitMessage {
-  type: 'CONTENTFLOW_CMS_INIT';
-}
-
 interface ContentClickMessage {
   type: 'CONTENTFLOW_CONTENT_CLICK';
   contentId: string;

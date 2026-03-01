@@ -1,0 +1,64 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build outputs
+dist
+build
+.turbo
+*.tsbuildinfo
+
+# Dev files
+.env
+.env.local
+.env.*.local
+*.log
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+*.md
+!README.md
+
+# Test
+coverage
+.nyc_output
+test
+tests
+__tests__
+*.spec.ts
+*.test.ts
+
+# Specs and history
+specs/
+history/
+AZURE_DEPLOYMENT_KEYS.md
+
+# Pulumi
+pulumi/
+
+# Keep these
+!apps/server/
+!packages/sdk/
+!apps/cms/
+!apps/bwo-tax-forms/
+!apps/demo/
+!apps/customer-portal/
+!package.json
+!turbo.json
+!tsconfig.base.json

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
@@ -7,7 +6,7 @@ import { Contact } from './pages/Contact';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/demo">
       <div className="min-h-screen bg-gray-50">
         <Header />
         <main>

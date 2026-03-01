@@ -1,0 +1,13 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "home",
+    "lang": "en-US",
+    "version": 15,
+    "updatedAt": "2026-03-01T05:17:53.810Z"
+  },
+  "site-title": "Business Solutions",
+  "hero-title": "Awesome Title Here",
+  "hero-subtitle": "this is sub title",
+  "hero-image": "/data/images/optimized/second_hero-800.webp"
+}

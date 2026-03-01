@@ -1,0 +1,34 @@
+{
+  "batchId": "batch_69a4c8dc6768819095f60f0a3a1abacd",
+  "status": "validating",
+  "sourceLang": "en-US",
+  "targetLangs": [
+    "es-ES",
+    "fr-FR",
+    "de-DE",
+    "ja-JP"
+  ],
+  "totalRequests": 12,
+  "fileIds": [
+    "bwo-taxforms-personal-info-es-ES",
+    "bwo-taxforms-personal-info-fr-FR",
+    "bwo-taxforms-personal-info-de-DE",
+    "bwo-taxforms-personal-info-ja-JP",
+    "bwo-taxforms-home-es-ES",
+    "bwo-taxforms-home-fr-FR",
+    "bwo-taxforms-home-de-DE",
+    "bwo-taxforms-home-ja-JP",
+    "bwo-taxforms-income-es-ES",
+    "bwo-taxforms-income-fr-FR",
+    "bwo-taxforms-income-de-DE",
+    "bwo-taxforms-income-ja-JP"
+  ],
+  "appIds": [
+    "bwo-taxforms"
+  ],
+  "inputFileId": "file-GPPhscBXBNCee6Andgj8pW",
+  "model": "gpt-5.1",
+  "temperature": 0.1,
+  "createdAt": "2026-03-01T23:16:44.477Z",
+  "completedAt": null
+}

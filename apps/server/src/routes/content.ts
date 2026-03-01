@@ -1,7 +1,8 @@
 import { getStorageService } from '../services/StorageFactory';
 import { logger } from '../utils/logger';
+import { parseOldFilename, parseNewPath, buildContentPath, normalizeContentPath, isNewStylePath } from '../utils/contentPaths';
 
-export default async function contentRoutes(req: Request, corsHeaders: HeadersInit) {
+export default async function contentRoutes(req: Request, corsHeaders: Record<string, string>) {
   const url = new URL(req.url);
   const path = url.pathname.replace('/api/content', '');
   const storage = getStorageService();
@@ -17,16 +18,29 @@ export default async function contentRoutes(req: Request, corsHeaders: HeadersIn
       );
     }
     
-    // Validate filename format
-    if (!filename.match(/^[a-z0-9-]+-[a-z0-9-]+-[a-z]{2}-[A-Z]{2}\.json$/i)) {
+    // Parse filename to validate format (supports both old and new formats)
+    const parts = isNewStylePath(filename) ? parseNewPath(filename) : parseOldFilename(filename);
+    
+    if (!parts) {
       return Response.json(
-        { error: 'Invalid filename format. Expected: {appId}-{pageId}-{lang}.json' },
+        { error: 'Invalid filename format. Expected: {appId}-{pageId}-{lang}.json or {appId}/{lang}/{pageId}.json' },
         { status: 400, headers: corsHeaders }
       );
     }
     
     try {
-      const content = await storage.readContent(filename);
+      // Try to read from new path first, fallback to old path
+      let content;
+      const newPath = buildContentPath(parts.appId, parts.lang, parts.pageId);
+      
+      try {
+        content = await storage.readContent(newPath);
+      } catch (error) {
+        // Fallback to old path format
+        const oldPath = `${parts.appId}-${parts.pageId}-${parts.lang}.json`;
+        content = await storage.readContent(oldPath);
+      }
+      
       return Response.json(content, { headers: corsHeaders });
     } catch (error: any) {
       logger.error('Failed to read content', { filename, error: error.message });
@@ -48,15 +62,17 @@ export default async function contentRoutes(req: Request, corsHeaders: HeadersIn
       );
     }
     
-    // Validate filename format
-    if (!filename.match(/^[a-z0-9-]+-[a-z0-9-]+-[a-z]{2}-[A-Z]{2}\.json$/i)) {
+    // Parse filename to validate format (supports both old and new formats)
+    const parts = isNewStylePath(filename) ? parseNewPath(filename) : parseOldFilename(filename);
+    
+    if (!parts) {
       return Response.json(
-        { error: 'Invalid filename format. Expected: {appId}-{pageId}-{lang}.json' },
+        { error: 'Invalid filename format. Expected: {appId}-{pageId}-{lang}.json or {appId}/{lang}/{pageId}.json' },
         { status: 400, headers: corsHeaders }
       );
     }
     
-    let payload;
+    let payload: any;
     try {
       payload = await req.json();
     } catch (error) {
@@ -83,19 +99,21 @@ export default async function contentRoutes(req: Request, corsHeaders: HeadersIn
     }
     
     // Verify filename matches $meta
-    const expectedFilename = `${payload.$meta.appId}-${payload.$meta.pageId}-${payload.$meta.lang}.json`;
-    if (filename !== expectedFilename) {
+    if (parts.appId !== payload.$meta.appId || parts.pageId !== payload.$meta.pageId || parts.lang !== payload.$meta.lang) {
       return Response.json(
-        { error: `Filename "${filename}" does not match $meta fields. Expected: "${expectedFilename}"` },
+        { error: `Filename does not match $meta fields` },
         { status: 400, headers: corsHeaders }
       );
     }
     
+    // Always write to new path format
+    const newPath = buildContentPath(parts.appId, parts.lang, parts.pageId);
+    
     // Auto-increment version if file exists
     let version = 1;
     try {
-      if (await storage.contentExists(filename)) {
-        const existingContent = await storage.readContent(filename);
+      if (await storage.contentExists(newPath)) {
+        const existingContent = await storage.readContent(newPath);
         version = (existingContent.$meta?.version || 0) + 1;
       }
     } catch (error) {
@@ -116,13 +134,13 @@ export default async function contentRoutes(req: Request, corsHeaders: HeadersIn
       ...contentKeys,
     };
     
-    // Write file
+    // Write file to new path
     try {
-      await storage.writeContent(filename, finalContent);
-      logger.info('Content saved', { filename, version });
+      await storage.writeContent(newPath, finalContent);
+      logger.info('Content saved', { path: newPath, version });
       return Response.json(finalContent, { headers: corsHeaders });
     } catch (error: any) {
-      logger.error('Failed to write content', { filename, error: error.message });
+      logger.error('Failed to write content', { path: newPath, error: error.message });
       return Response.json(
         { error: 'Failed to write content file' },
         { status: 500, headers: corsHeaders }

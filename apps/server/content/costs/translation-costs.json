@@ -1,0 +1,38 @@
+[
+  {
+    "batchId": "batch_69a48592101c81908ad6bd28b82da251",
+    "timestamp": "2026-03-01T18:32:00.498Z",
+    "filesTranslated": 12,
+    "inputTokens": 6734,
+    "outputTokens": 7182,
+    "cost": 0.040119,
+    "costPerFile": 0.003343,
+    "appIds": [
+      "customer-portal"
+    ]
+  },
+  {
+    "batchId": "batch_69a48592101c81908ad6bd28b82da251",
+    "timestamp": "2026-03-01T18:32:40.081Z",
+    "filesTranslated": 12,
+    "inputTokens": 6734,
+    "outputTokens": 7182,
+    "cost": 0.040119,
+    "costPerFile": 0.003343,
+    "appIds": [
+      "customer-portal"
+    ]
+  },
+  {
+    "batchId": "batch_69a48762c74881908df20ff8c833cee9",
+    "timestamp": "2026-03-01T18:39:44.527Z",
+    "filesTranslated": 12,
+    "inputTokens": 2942,
+    "outputTokens": 1724,
+    "cost": 0.010459,
+    "costPerFile": 0.000872,
+    "appIds": [
+      "bwo-taxforms"
+    ]
+  }
+]

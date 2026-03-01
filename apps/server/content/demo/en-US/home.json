@@ -3,11 +3,11 @@
     "appId": "demo",
     "pageId": "home",
     "lang": "en-US",
-    "version": 15,
-    "updatedAt": "2026-03-01T05:17:53.810Z"
+    "version": 18,
+    "updatedAt": "2026-03-01T15:37:11.755Z"
   },
   "site-title": "Business Solutions",
   "hero-title": "Awesome Title Here",
-  "hero-subtitle": "this is sub title",
+  "hero-subtitle": "AI powered translations as well, including images, Product can change image and text",
   "hero-image": "/data/images/optimized/second_hero-800.webp"
 }

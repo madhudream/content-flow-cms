@@ -1,0 +1,20 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "income",
+    "lang": "de-DE",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.526Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.526Z"
+  },
+  "bwo-field-employer-name": "Name des Arbeitgebers oder Unternehmens",
+  "bwo-field-employer-ein": "Arbeitgeber-Identifikationsnummer (EIN)",
+  "bwo-field-wages-amount": "Gesamte Löhne und Gehälter (Feld 1 des W-2)",
+  "bwo-field-federal-tax-withheld": "Einbehaltene Bundes-Einkommensteuer (Feld 2 des W-2)",
+  "bwo-field-interest-income": "Zinserträge (Formular 1099-INT)",
+  "bwo-field-dividend-income": "Dividendenerträge (Formular 1099-DIV)",
+  "bwo-field-self-employment-income": "Einkünfte aus selbständiger Tätigkeit (Anlage C)",
+  "bwo-field-rental-income": "Einkünfte aus Vermietung von Immobilien",
+  "bwo-field-other-income-description": "Andere Einkunftsquellen beschreiben"
+}

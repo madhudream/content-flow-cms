@@ -1,0 +1,21 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "personal-info",
+    "lang": "ja-JP",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.521Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.521Z"
+  },
+  "bwo-field-first-name": "名",
+  "bwo-field-middle-initial": "ミドルネームの頭文字（任意）",
+  "bwo-field-last-name": "姓",
+  "bwo-field-email": "メールアドレス",
+  "bwo-field-phone": "主な電話番号",
+  "bwo-field-ssn": "社会保障番号（SSN）",
+  "bwo-field-street-address": "番地・丁目・号",
+  "bwo-field-city": "市区町村",
+  "bwo-field-state": "州",
+  "bwo-field-zip-code": "郵便番号（ZIP）"
+}

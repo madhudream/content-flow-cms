@@ -1,0 +1,31 @@
+{
+  "batchId": "batch_69a45d33b0708190b4cb12cdbcc82e0f",
+  "status": "validating",
+  "sourceLang": "en-US",
+  "targetLangs": [
+    "es-ES",
+    "fr-FR",
+    "de-DE",
+    "ja-JP"
+  ],
+  "totalRequests": 12,
+  "fileIds": [
+    "demo-contact-es-ES",
+    "demo-contact-fr-FR",
+    "demo-contact-de-DE",
+    "demo-contact-ja-JP",
+    "demo-about-es-ES",
+    "demo-about-fr-FR",
+    "demo-about-de-DE",
+    "demo-about-ja-JP",
+    "demo-home-es-ES",
+    "demo-home-fr-FR",
+    "demo-home-de-DE",
+    "demo-home-ja-JP"
+  ],
+  "inputFileId": "file-Un2fsY5YyL6y3VApwvZWox",
+  "model": "gpt-5.1",
+  "temperature": 0.1,
+  "createdAt": "2026-03-01T15:37:24.031Z",
+  "completedAt": null
+}

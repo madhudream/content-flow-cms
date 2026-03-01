@@ -1,0 +1,30 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "customers",
+    "lang": "fr-FR",
+    "version": 3,
+    "updatedAt": "2026-03-01T18:32:40.076Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.076Z"
+  },
+  "customers-hero-title": "Plébiscité par des entreprises du monde entier",
+  "customers-hero-subtitle": "Des startups aux grandes entreprises, des sociétés du monde entier s’appuient sur Customer Portal pour offrir des expériences de support exceptionnelles.",
+  "customers-map-label": "Où nous intervenons",
+  "customers-map-title": "Nous accompagnons les entreprises dans toute l’Amérique",
+  "customers-map-subtitle": "Des startups côtières aux entreprises du cœur du pays, plus de 10 000 sociétés nous font confiance pour offrir chaque jour des expériences client exceptionnelles.",
+  "customers-testimonials-label": "Histoires de clients",
+  "customers-testimonials-title": "Pourquoi les équipes nous choisissent",
+  "customers-testimonial1-text": "Customer Portal a transformé notre gestion du support. Les temps de réponse ont chuté de 70 % dès le premier mois.",
+  "customers-testimonial1-name": "Sarah Chen",
+  "customers-testimonial1-role": "Responsable du support, TechCorp",
+  "customers-testimonial2-text": "Le tableau de bord analytique justifie l’outil à lui seul. Nous comprenons enfin ce dont nos clients ont besoin.",
+  "customers-testimonial2-name": "Michael Rodriguez",
+  "customers-testimonial2-role": "CTO, StartupXYZ",
+  "customers-testimonial3-text": "Le meilleur investissement que nous ayons fait. Nos scores de satisfaction client ont augmenté de 40 % en 3 mois.",
+  "customers-testimonial3-name": "Emma Thompson",
+  "customers-testimonial3-role": "VP Customer Success, Enterprise Co",
+  "customers-cta-title": "Rejoignez des milliers de clients satisfaits",
+  "customers-cta-subtitle": "Commencez dès aujourd’hui à offrir des expériences client exceptionnelles",
+  "customers-cta-button": "Commencer gratuitement"
+}

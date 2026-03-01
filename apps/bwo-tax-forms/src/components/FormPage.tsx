@@ -171,6 +171,7 @@ export function FormPage({ pageId }: FormPageProps) {
                     value={formData[field.id] || ''}
                     onChange={handleFieldChange}
                     error={errors.find((e) => e.fieldId === field.id) || null}
+                    pageId={pageId}
                   />
                 </div>
               ))}

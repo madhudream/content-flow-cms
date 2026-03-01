@@ -21,13 +21,16 @@ export const validateFilename = (filename: string): { valid: boolean; error?: st
   let appPageParts: string[];
   
   // Check if last part looks like country code (2 uppercase letters)
-  if (parts.length >= 4 && /^[A-Z]{2}$/.test(parts[parts.length - 1])) {
+  const lastPart = parts[parts.length - 1];
+  const secondLastPart = parts[parts.length - 2];
+  
+  if (parts.length >= 4 && lastPart && /^[A-Z]{2}$/.test(lastPart)) {
     // Pattern: demo-home-en-US
-    langParts = [parts[parts.length - 2], parts[parts.length - 1]];
+    langParts = [secondLastPart || '', lastPart];
     appPageParts = parts.slice(0, -2);
   } else {
     // Pattern: demo-home-en
-    langParts = [parts[parts.length - 1]];
+    langParts = [lastPart || ''];
     appPageParts = parts.slice(0, -1);
   }
   

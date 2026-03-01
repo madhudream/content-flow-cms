@@ -1,6 +1,6 @@
-import { join } from 'path';
+import { join, relative, dirname } from 'path';
 import { file, write } from 'bun';
-import { readdir } from 'fs/promises';
+import { readdir, stat, mkdir } from 'fs/promises';
 import type { IContentStorage } from './IContentStorage';
 import { config } from '../config';
 import { logger } from '../utils/logger';
@@ -41,15 +41,45 @@ export class LocalStorageService implements IContentStorage {
 
   async writeContent(filename: string, content: any): Promise<void> {
     const filePath = join(this.contentDir, filename);
+    
+    // Create directory structure if it doesn't exist (for new folder structure)
+    const dir = dirname(filePath);
+    try {
+      await mkdir(dir, { recursive: true });
+    } catch (error) {
+      // Directory might already exist, ignore error
+    }
+    
     await write(filePath, JSON.stringify(content, null, 2));
     logger.info('Content written', { filename });
   }
 
-  async listContent(): Promise<string[]> {
-    const files = await readdir(this.contentDir);
-    const jsonFiles = files.filter((f) => f.endsWith('.json') && !f.startsWith('.'));
-    logger.debug('Content listed', { count: jsonFiles.length });
-    return jsonFiles;
+  async listContent(prefixFilter?: string): Promise<string[]> {
+    const allFiles: string[] = [];
+    
+    /**
+     * Recursively walk directory and collect all JSON files
+     */
+    async function walk(dir: string, baseDir: string): Promise<void> {
+      const entries = await readdir(dir, { withFileTypes: true });
+      
+      for (const entry of entries) {
+        const fullPath = join(dir, entry.name);
+        
+        if (entry.isDirectory()) {
+          // Recursively walk subdirectories
+          await walk(fullPath, baseDir);
+        } else if (entry.isFile() && entry.name.endsWith('.json') && !entry.name.startsWith('.')) {
+          // Add JSON files with path relative to content directory
+          const relativePath = relative(baseDir, fullPath);
+          allFiles.push(relativePath);
+        }
+      }
+    }
+    
+    await walk(this.contentDir, this.contentDir);
+    logger.debug('Content listed (recursive)', { count: allFiles.length, files: allFiles });
+    return allFiles;
   }
 
   async readAppsConfig(): Promise<any> {
@@ -173,5 +203,45 @@ export class LocalStorageService implements IContentStorage {
     const filePath = join(this.contentDir, filename);
     const fileHandle = file(filePath);
     return await fileHandle.exists();
+  }
+
+  async saveCostData(costData: any): Promise<void> {
+    const costFilePath = join(this.contentDir, 'costs', 'translation-costs.json');
+    
+    // Read existing costs or create empty array
+    let costs: any[] = [];
+    try {
+      const costFile = file(costFilePath);
+      if (await costFile.exists()) {
+        costs = await costFile.json();
+      }
+    } catch (error) {
+      logger.warn('Failed to read existing costs, creating new log', { error });
+      costs = [];
+    }
+
+    // Append new cost data
+    costs.push(costData);
+
+    // Write back to file
+    await write(costFilePath, JSON.stringify(costs, null, 2));
+    logger.info('Cost data saved', { batchId: costData.batchId, cost: costData.cost });
+  }
+
+  async readCostData(): Promise<any[]> {
+    const costFilePath = join(this.contentDir, 'costs', 'translation-costs.json');
+    
+    try {
+      const costFile = file(costFilePath);
+      if (await costFile.exists()) {
+        const costs = await costFile.json();
+        logger.debug('Cost data read', { count: costs.length });
+        return costs;
+      }
+    } catch (error) {
+      logger.warn('Failed to read cost data', { error });
+    }
+
+    return [];
   }
 }

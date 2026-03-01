@@ -1,2 +1,5 @@
 config:
   azure-native:location: eastus
+  contentflow-cms:openaiApiKey:
+    secure: AAABAJCBCnM3OzaE8DJiAOfjKP4J5hUK0yKl7O5TcGtCRnSRICJFlMdFP45UBLWaX7PVX1BUkY9w+LezzlRrNLupvOxBV3AjSKDOtBR1lVAuOy8hx98qln9uDxOh7IW0vv8QofjWdGnNP5+fWyNupIBT4D2c6yoN3OE2shj+IHjORWJNSNKQpoQ/lO2KRiEdrYRuzuaBbxVcYExQ9IwHV4f7KnKcQ9lAgWVixv/IV0+7rQ/vPjBnQyjdAb+du5XrfNgumw==
+  contentflow-cms:uploadContent: "false"

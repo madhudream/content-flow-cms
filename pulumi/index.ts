@@ -5,12 +5,29 @@ import * as containerregistry from "@pulumi/azure-native/containerregistry";
 import * as app from "@pulumi/azure-native/app";
 import * as web from "@pulumi/azure-native/web";
 import * as docker from "@pulumi/docker";
+import * as fs from "fs";
+import * as path from "path";
+
+// Helper function to recursively walk directory
+function* walkDir(dir: string): Generator<string> {
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isDirectory()) {
+      yield* walkDir(filePath);
+    } else {
+      yield filePath;
+    }
+  }
+}
 
 // Get configuration
 const config = new pulumi.Config();
 const location = config.get("location") || "eastus";
 const imageName = config.get("imageName") || "contentflow-cms";
 const registryName = config.get("registryName") || "contentflowcr";
+const uploadContent = config.getBoolean("uploadContent") ?? true; // Set to false to skip content/image uploads
 
 // Create an Azure Resource Group
 const resourceGroup = new resources.ResourceGroup("contentflow-rg", {
@@ -67,7 +84,7 @@ const contentContainer = new storage.BlobContainer("contentflow-content", {
     publicAccess: storage.PublicAccess.Blob, // Public read access for blobs
 });
 
-// Upload initial config file to blob storage
+// Upload initial config file to blob storage (always upload config)
 const appsConfigBlob = new storage.Blob("apps-config-blob", {
     resourceGroupName: resourceGroup.name,
     accountName: storageAccount.name,
@@ -77,47 +94,64 @@ const appsConfigBlob = new storage.Blob("apps-config-blob", {
     contentType: "application/json",
 });
 
-// Upload all content JSON files to blob storage
-const contentFiles = [
-    "bwo-taxforms-home-en-US.json",
-    "bwo-taxforms-income-en-US.json",
-    "bwo-taxforms-personal-info-en-US.json",
-    "customer-portal-about-en-US.json",
-    "customer-portal-customers-en-US.json",
-    "customer-portal-home-en-US.json",
-    "demo-about-en-US.json",
-    "demo-contact-en-US.json",
-    "demo-home-en-US.json",
-    "demo-home-es-ES.json",
-];
+// Upload all content JSON files to blob storage (recursively scan new folder structure)
+// Set uploadContent=false in Pulumi config to skip this on updates
+const contentDir = path.join(__dirname, "../apps/server/content");
+const contentBlobs: storage.Blob[] = [];
 
-const contentBlobs = contentFiles.map(filename => 
-    new storage.Blob(`content-${filename}`, {
-        resourceGroupName: resourceGroup.name,
-        accountName: storageAccount.name,
-        containerName: contentContainer.name,
-        blobName: `content/${filename}`,
-        source: new pulumi.asset.FileAsset(`../apps/server/content/${filename}`),
-        contentType: "application/json",
-    })
-);
-
-// Upload images to blob storage
-const imageFiles = [
-    { name: "hero.jpg", contentType: "image/jpeg" },
-    { name: "second_hero.webp", contentType: "image/webp" },
-];
-
-const imageBlobs = imageFiles.map(img => 
-    new storage.Blob(`image-${img.name}`, {
-        resourceGroupName: resourceGroup.name,
-        accountName: storageAccount.name,
-        containerName: contentContainer.name,
-        blobName: `images/${img.name}`,
-        source: new pulumi.asset.FileAsset(`../apps/server/content/images/${img.name}`),
-        contentType: img.contentType,
-    })
-);
+if (uploadContent) {
+    console.log("📤 Uploading content files and images to blob storage...");
+    
+    for (const filePath of walkDir(contentDir)) {
+        const relativePath = path.relative(contentDir, filePath);
+        
+        // Skip translation-batches and costs directories
+        if (relativePath.startsWith('translation-batches') || relativePath.startsWith('costs')) {
+            continue;
+        }
+        
+        // Only upload JSON and image files
+        const ext = path.extname(filePath).toLowerCase();
+        if (!['.json', '.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg'].includes(ext)) {
+            continue;
+        }
+        
+        // Determine content type
+        let contentType = 'application/octet-stream';
+        if (ext === '.json') {
+            contentType = 'application/json';
+        } else if (ext === '.jpg' || ext === '.jpeg') {
+            contentType = 'image/jpeg';
+        } else if (ext === '.png') {
+            contentType = 'image/png';
+        } else if (ext === '.webp') {
+            contentType = 'image/webp';
+        } else if (ext === '.gif') {
+            contentType = 'image/gif';
+        } else if (ext === '.svg') {
+            contentType = 'image/svg+xml';
+        }
+        
+        // Create blob with path preserved (e.g., content/demo/en-US/home.json or images/hero.jpg)
+        const blobName = relativePath.replace(/\\/g, '/'); // Normalize path separators
+        const resourceName = `content-${relativePath.replace(/[\/\\]/g, '-').replace(/\./g, '-')}`;
+        
+        const blob = new storage.Blob(resourceName, {
+            resourceGroupName: resourceGroup.name,
+            accountName: storageAccount.name,
+            containerName: contentContainer.name,
+            blobName: blobName,
+            source: new pulumi.asset.FileAsset(filePath),
+            contentType: contentType,
+        });
+        
+        contentBlobs.push(blob);
+    }
+    
+    console.log(`✅ Configured ${contentBlobs.length} content files for upload`);
+} else {
+    console.log("⏭️  Skipping content file uploads (uploadContent=false)");
+}
 
 // Create Azure Container Registry
 const registry = new containerregistry.Registry("contentflowcr", {
@@ -195,6 +229,10 @@ const containerApp = new app.ContainerApp("contentflow-app", {
                 name: "azure-storage-key",
                 value: primaryStorageKey,
             },
+            {
+                name: "openai-api-key",
+                value: config.requireSecret("openaiApiKey"),
+            },
         ],
     },
     template: {
@@ -233,6 +271,18 @@ const containerApp = new app.ContainerApp("contentflow-app", {
                 {
                     name: "BLOB_STORAGE_BASE_URL",
                     value: pulumi.interpolate`https://${storageAccount.name}.blob.core.windows.net/contentflow-content`,
+                },
+                {
+                    name: "OPENAI_API_KEY",
+                    secretRef: "openai-api-key",
+                },
+                {
+                    name: "OPENAI_MODEL",
+                    value: "gpt-5.1",
+                },
+                {
+                    name: "OPENAI_TEMPERATURE",
+                    value: "0.1",
                 },
             ],
         }],

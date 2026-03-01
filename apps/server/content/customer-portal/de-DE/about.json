@@ -1,0 +1,32 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "about",
+    "lang": "de-DE",
+    "version": 3,
+    "updatedAt": "2026-03-01T18:32:40.078Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.078Z"
+  },
+  "about-hero-title": "Was wäre möglich, wenn außergewöhnlicher Kundensupport für alle zugänglich wäre?",
+  "about-hero-subtitle": "Unsere Mission ist es, das Unternehmenswachstum durch intelligente Support-Operationen zu beschleunigen. Verwurzelt in den Realitäten von Customer-Service-Workflows und angetrieben von durchdachter Innovation hilft das Customer Portal Unternehmen, effizient zu arbeiten und ihre Kund:innen zu begeistern.",
+  "about-story-label": "Ein universelles Problem lösen",
+  "about-story-p1": "Jedes Unternehmen ist auf exzellenten Kundensupport angewiesen. Er ist die Grundlage für Kundenzufriedenheit und liefert die Erkenntnisse, die Unternehmensentscheidungen prägen. Dennoch erhalten die meisten Unternehmen nie wirklich aussagekräftige operative Einblicke, weil Support-Teams von alltäglichen, zeitaufwendigen Aufgaben überlastet sind. Unternehmen stehen unter demselben Druck: Anstatt Support als strategischen Vorteil zu nutzen, werden sie in administrative Arbeit hineingezogen, die Fokus raubt und Wachstum begrenzt.",
+  "about-story-p2": "Customer Portal existiert, um diese Dynamik zu verändern. Wenn Support-Teams schnell und präzise arbeiten können, profitieren alle Bereiche des Unternehmens. Wir machen das möglich, indem wir Routineaufgaben automatisieren, sodass Teams ihre Zeit und Expertise auf hochwertige Kundenbeziehungen lenken können.",
+  "about-mission-label": "Die Zukunft der Customer Operations neu definieren",
+  "about-story-p3": "Der Kundenservice durchläuft einen tiefgreifenden Wandel, und Support-Operationen gehören zu den anspruchsvollsten realen Einsatzfeldern für angewandte KI. Die Arbeit umfasst unstrukturierte, inkonsistente Kundendaten, komplexe Workflows und unzählige Sonderfälle mit vielen bedingten Schritten.",
+  "about-story-p4": "Um diese Probleme zu lösen, müssen Systeme entwickelt werden, die sich an reale Rahmenbedingungen anpassen, mehrstufige Workflows planen und zuverlässig im großen Maßstab ausführen können. Wir stellen uns dieser Herausforderung, weil wir glauben, dass außergewöhnlicher Support für jedes Unternehmen zugänglich sein sollte – nicht nur für diejenigen mit riesigen Teams oder Budgets.",
+  "about-team-label": "Gestalte mit uns",
+  "about-team-title": "Wir sind ein Remote-Team, das über den ganzen Globus verteilt ist.",
+  "about-team-p1": "Das gesamte Unternehmen kommt mehrmals im Jahr zusammen, und wir treffen uns häufig in kleineren Gruppen, wenn intensive Zusammenarbeit hilfreich ist. Wir wissen, dass alle unterschiedlich arbeiten, daher bieten wir die Flexibilität, so zu arbeiten, wie Menschen am schnellsten vorankommen und am klarsten denken können.",
+  "about-team-p2": "Als Teil eines kleinen Teams übernimmst du echte Verantwortung über den gesamten Stack hinweg. Du lieferst hier nicht nur Features aus. Jede Interaktion mit Kund:innen und jede Änderung, die du ausrollst, prägt direkt, wie Unternehmen arbeiten. Du arbeitest eng mit Business-Verantwortlichen zusammen, um ihre Bedürfnisse zu verstehen, neue Technologien einzuführen, Workflows neu zu gestalten und Wachstum freizusetzen, das zuvor unerreichbar war.",
+  "about-values-label": "Unsere Prinzipien",
+  "about-value1-title": "Customer First",
+  "about-value1-desc": "Jede Entscheidung beginnt für uns mit einer Frage: Wie hilft das unseren Kund:innen, erfolgreich zu sein?",
+  "about-value2-title": "Move Fast",
+  "about-value2-desc": "Geschwindigkeit zählt. Wir liefern früh und häufig aus, lernen aus realem Feedback und iterieren darauf.",
+  "about-value3-title": "Radikale Transparenz",
+  "about-value3-desc": "Wir glauben an offene Kommunikation – intern wie extern mit unseren Kund:innen. Keine Überraschungen, keine versteckten Agenden.",
+  "about-value4-title": "Einfachheit umarmen",
+  "about-value4-desc": "Komplexität ist der Feind der Umsetzung. Wir streben danach, alles, was wir bauen, einfach und intuitiv zu machen."
+}

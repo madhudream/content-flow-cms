@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { LanguageSelector } from './LanguageSelector';
 
 export default function Navigation() {
   const location = useLocation();
@@ -55,6 +56,7 @@ export default function Navigation() {
                 Customers
               </Link>
             </div>
+            <LanguageSelector />
             <button
               onClick={openInNewTab}
               className="flex items-center gap-2 px-3 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-lg transition-all duration-200 text-sm font-medium shadow-sm hover:shadow-md"

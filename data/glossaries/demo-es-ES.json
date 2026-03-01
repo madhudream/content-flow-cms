@@ -1,0 +1,18 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "lang": "es-ES",
+    "version": 1,
+    "updatedAt": "2026-03-01T00:00:00Z"
+  },
+  "terms": {
+    "ContentFlow": "ContentFlow",
+    "Dashboard": "Panel de Control",
+    "Get Started": "Comenzar",
+    "Sign Up": "Registrarse",
+    "Log In": "Iniciar sesión",
+    "Welcome": "Bienvenido",
+    "About": "Acerca de",
+    "Contact": "Contacto"
+  }
+}

@@ -79,14 +79,17 @@ export class AzureStorageService implements IContentStorage {
   }
 
   async readContent(filename: string): Promise<any> {
-    const blobName = `content/${filename}`;
+    // Don't prepend 'content/' if filename already includes a full path
+    const blobName = filename.includes('/') && !filename.startsWith('content/') 
+      ? `content/${filename}` 
+      : filename.startsWith('content/') ? filename : `content/${filename}`;
     const blobClient = this.containerClient.getBlobClient(blobName);
     
     try {
       const downloadResponse = await blobClient.download();
       const downloaded = await this.streamToBuffer(downloadResponse.readableStreamBody!);
       const content = JSON.parse(downloaded.toString('utf-8'));
-      logger.debug('Content read from Azure', { filename });
+      logger.debug('Content read from Azure', { filename, blobName });
       return content;
     } catch (error: any) {
       if (error.statusCode === 404) {
@@ -98,7 +101,10 @@ export class AzureStorageService implements IContentStorage {
   }
 
   async writeContent(filename: string, content: any): Promise<void> {
-    const blobName = `content/${filename}`;
+    // Don't prepend 'content/' if filename already includes a full path
+    const blobName = filename.includes('/') && !filename.startsWith('content/') 
+      ? `content/${filename}` 
+      : filename.startsWith('content/') ? filename : `content/${filename}`;
     const blockBlobClient = this.containerClient.getBlockBlobClient(blobName);
     
     const jsonString = JSON.stringify(content, null, 2);
@@ -111,11 +117,11 @@ export class AzureStorageService implements IContentStorage {
           blobCacheControl: 'public, max-age=300', // 5 minutes
         },
       });
-      logger.info('Content written to Azure', { filename, size: buffer.length });
+      logger.info('Content written to Azure', { filename, blobName, size: buffer.length });
       
       // TODO: Purge CDN cache if CDN is enabled
       if (this.cdnEndpoint) {
-        await this.purgeCdnCache(`content/${filename}`);
+        await this.purgeCdnCache(blobName);
       }
     } catch (error) {
       logger.error('Failed to write content to Azure', { filename, error });
@@ -123,21 +129,23 @@ export class AzureStorageService implements IContentStorage {
     }
   }
 
-  async listContent(): Promise<string[]> {
+  async listContent(prefixFilter?: string): Promise<string[]> {
     const files: string[] = [];
-    const prefix = 'content/';
+    // Always prepend 'content/' for Azure storage structure
+    const prefix = prefixFilter ? `content/${prefixFilter}` : 'content/';
     
     try {
       for await (const blob of this.containerClient.listBlobsFlat({ prefix })) {
-        const filename = blob.name.replace(prefix, '');
+        // Strip 'content/' prefix from results to return relative paths
+        const filename = blob.name.replace('content/', '');
         if (filename.endsWith('.json') && !filename.startsWith('.')) {
           files.push(filename);
         }
       }
-      logger.debug('Content listed from Azure', { count: files.length });
+      logger.debug('Content listed from Azure', { prefixFilter, prefix, count: files.length });
       return files;
     } catch (error) {
-      logger.error('Failed to list content from Azure', { error });
+      logger.error('Failed to list content from Azure', { prefixFilter, prefix, error });
       throw error;
     }
   }
@@ -308,7 +316,7 @@ export class AzureStorageService implements IContentStorage {
       const buffer = await this.streamToBuffer(downloadResponse.readableStreamBody);
       logger.debug('Image read from Azure', { subfolder, filename, size: buffer.byteLength });
       
-      return buffer.buffer;
+      return buffer.buffer as ArrayBuffer;
     } catch (error) {
       logger.error('Failed to read image from Azure', { subfolder, filename, error });
       throw error;
@@ -334,15 +342,68 @@ export class AzureStorageService implements IContentStorage {
   }
 
   async contentExists(filename: string): Promise<boolean> {
-    const blobName = `content/${filename}`;
+    // Don't prepend 'content/' if filename already includes a full path
+    const blobName = filename.includes('/') && !filename.startsWith('content/') 
+      ? `content/${filename}` 
+      : filename.startsWith('content/') ? filename : `content/${filename}`;
     const blobClient = this.containerClient.getBlobClient(blobName);
     
     try {
       return await blobClient.exists();
     } catch (error) {
-      logger.error('Failed to check content existence in Azure', { filename, error });
+      logger.error('Failed to check content existence in Azure', { filename, blobName, error });
       return false;
     }
+  }
+
+  async saveCostData(costData: any): Promise<void> {
+    const blobName = 'costs/translation-costs.json';
+    const blobClient = this.containerClient.getBlockBlobClient(blobName);
+    
+    // Read existing costs or create empty array
+    let costs: any[] = [];
+    try {
+      const exists = await blobClient.exists();
+      if (exists) {
+        const downloadResponse = await blobClient.download();
+        const downloadedContent = await this.streamToBuffer(downloadResponse.readableStreamBody!);
+        costs = JSON.parse(downloadedContent.toString('utf-8'));
+      }
+    } catch (error) {
+      logger.warn('Failed to read existing costs from Azure, creating new log', { error });
+      costs = [];
+    }
+
+    // Append new cost data
+    costs.push(costData);
+
+    // Write back to blob
+    const content = JSON.stringify(costs, null, 2);
+    await blobClient.upload(content, content.length, {
+      blobHTTPHeaders: { blobContentType: 'application/json' },
+    });
+
+    logger.info('Cost data saved to Azure', { batchId: costData.batchId, cost: costData.cost });
+  }
+
+  async readCostData(): Promise<any[]> {
+    const blobName = 'costs/translation-costs.json';
+    const blobClient = this.containerClient.getBlockBlobClient(blobName);
+    
+    try {
+      const exists = await blobClient.exists();
+      if (exists) {
+        const downloadResponse = await blobClient.download();
+        const downloadedContent = await this.streamToBuffer(downloadResponse.readableStreamBody!);
+        const costs = JSON.parse(downloadedContent.toString('utf-8'));
+        logger.debug('Cost data read from Azure', { count: costs.length });
+        return costs;
+      }
+    } catch (error) {
+      logger.warn('Failed to read cost data from Azure', { error });
+    }
+
+    return [];
   }
 
   /**

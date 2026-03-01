@@ -1,0 +1,15 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "home",
+    "lang": "fr-FR",
+    "version": 18,
+    "updatedAt": "2026-03-01T15:32:44.386Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T15:32:44.386Z"
+  },
+  "site-title": "Solutions d’entreprise",
+  "hero-title": "Titre génial ici",
+  "hero-subtitle": "Traductions également optimisées par l’IA, y compris pour les images",
+  "hero-image": "/data/images/optimized/second_hero-800.webp"
+}

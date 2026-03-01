@@ -22,9 +22,10 @@ export interface IContentStorage {
 
   /**
    * List all content files
+   * @param prefix - Optional prefix to filter blobs (e.g., 'content/', 'translation-batches/')
    * @returns Array of filenames
    */
-  listContent(): Promise<string[]>;
+  listContent(prefix?: string): Promise<string[]>;
 
   /**
    * Read apps configuration
@@ -100,4 +101,16 @@ export interface IContentStorage {
    * @param filename - Content file name
    */
   contentExists(filename: string): Promise<boolean>;
+
+  /**
+   * Save cost tracking data
+   * @param costData - Cost entry to append to log
+   */
+  saveCostData(costData: any): Promise<void>;
+
+  /**
+   * Read cost tracking data
+   * @returns Cost log array
+   */
+  readCostData(): Promise<any[]>;
 }

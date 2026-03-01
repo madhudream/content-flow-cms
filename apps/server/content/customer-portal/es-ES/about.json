@@ -1,0 +1,32 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "about",
+    "lang": "es-ES",
+    "version": 3,
+    "updatedAt": "2026-03-01T18:32:40.078Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.078Z"
+  },
+  "about-hero-title": "¿Qué sería posible si una atención al cliente excepcional estuviera al alcance de todos?",
+  "about-hero-subtitle": "Nuestra misión es acelerar el crecimiento empresarial mediante operaciones de soporte inteligentes. Basado en las realidades de los flujos de trabajo de atención al cliente e impulsado por una innovación reflexiva, Customer Portal ayuda a las empresas a operar con eficiencia y a deleitar a sus clientes.",
+  "about-story-label": "Resolver un problema universal",
+  "about-story-p1": "Cada empresa depende de una excelente atención al cliente. Es la base de la satisfacción de los clientes e informa las decisiones que dan forma a las compañías. Sin embargo, la mayoría de las empresas nunca reciben información operativa significativa porque los equipos de soporte están desbordados por tareas mundanas y que consumen mucho tiempo. Las empresas se enfrentan a las mismas presiones. En lugar de utilizar el soporte como un activo estratégico, se ven arrastradas a un trabajo administrativo que drena el foco y limita el crecimiento.",
+  "about-story-p2": "Customer Portal existe para cambiar esa dinámica. Cuando los equipos de soporte pueden trabajar con rapidez y precisión, los beneficios se extienden a toda la empresa. Hacemos esto posible automatizando el trabajo rutinario para que los equipos puedan redirigir su tiempo y experiencia hacia relaciones con clientes de alto valor.",
+  "about-mission-label": "Redefiniendo el futuro de las operaciones de atención al cliente",
+  "about-story-p3": "La atención al cliente está entrando en una gran transformación, y las operaciones de soporte son uno de los ámbitos reales más difíciles para la IA aplicada. El trabajo implica datos de clientes desordenados e inconsistentes, flujos de trabajo complejos e innumerables casos límite que abarcan muchos pasos condicionales.",
+  "about-story-p4": "Resolver estos problemas requiere crear sistemas que puedan adaptarse a las limitaciones del mundo real, planificar flujos de trabajo de varios pasos y ejecutarse de forma fiable a escala. Estamos comprometidos con este reto porque creemos que un soporte excepcional debería estar al alcance de cualquier empresa, no solo de aquellas con equipos o presupuestos enormes.",
+  "about-team-label": "Construye con nosotros",
+  "about-team-title": "Somos un equipo remoto distribuido por todo el mundo.",
+  "about-team-p1": "Toda la empresa se reúne varias veces al año y a menudo nos juntamos en grupos más pequeños cuando la colaboración de alta intensidad ayuda. Sabemos que cada persona trabaja de forma diferente, por lo que ofrecemos a la gente la flexibilidad de trabajar de la manera que les permita moverse rápido y pensar con claridad.",
+  "about-team-p2": "Como parte de un equipo pequeño, tendrás una verdadera responsabilidad a lo largo de todo el stack. Aquí no solo lanzarás funcionalidades. Cada interacción con un cliente y cada cambio que publiques da forma directamente a cómo operan las empresas. Trabajarás estrechamente con líderes de negocio para entender sus necesidades, introducir nuevas tecnologías, rediseñar flujos de trabajo y desbloquear un crecimiento al que antes no podían acceder.",
+  "about-values-label": "Nuestros principios",
+  "about-value1-title": "El cliente primero",
+  "about-value1-desc": "Cada decisión que tomamos comienza con una pregunta: ¿Cómo ayuda esto a que nuestros clientes tengan éxito?",
+  "about-value2-title": "Muévete rápido",
+  "about-value2-desc": "La velocidad importa. Lanzamos pronto y con frecuencia, aprendiendo e iterando a partir de la experiencia real.",
+  "about-value3-title": "Transparencia radical",
+  "about-value3-desc": "Creemos en la comunicación abierta, tanto internamente como con nuestros clientes. Sin sorpresas, sin agendas ocultas.",
+  "about-value4-title": "Abraza la simplicidad",
+  "about-value4-desc": "La complejidad es la enemiga de la ejecución. Nos esforzamos por hacer que todo lo que construimos sea sencillo e intuitivo."
+}

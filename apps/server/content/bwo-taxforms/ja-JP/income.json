@@ -1,0 +1,20 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "income",
+    "lang": "ja-JP",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.526Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.526Z"
+  },
+  "bwo-field-employer-name": "雇用主または会社名",
+  "bwo-field-employer-ein": "雇用主識別番号（EIN）",
+  "bwo-field-wages-amount": "賃金および給与の合計（W-2のボックス1）",
+  "bwo-field-federal-tax-withheld": "源泉徴収された連邦所得税（W-2のボックス2）",
+  "bwo-field-interest-income": "利子所得（フォーム1099-INT）",
+  "bwo-field-dividend-income": "配当所得（フォーム1099-DIV）",
+  "bwo-field-self-employment-income": "自営業所得（スケジュールC）",
+  "bwo-field-rental-income": "賃貸不動産所得",
+  "bwo-field-other-income-description": "その他の所得源の内容を記入してください"
+}

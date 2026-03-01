@@ -1,0 +1,14 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "home",
+    "lang": "es-ES",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.521Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.521Z"
+  },
+  "bwo-field-taxpayer-name": "Nombre legal completo (tal como aparece en el documento de identidad)",
+  "bwo-field-tax-year": "Ejercicio fiscal",
+  "bwo-field-filing-status": "Elige tu estado civil para la declaración"
+}

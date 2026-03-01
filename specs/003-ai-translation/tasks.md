@@ -26,7 +26,7 @@
 ## Phase 1: Batch Translation Service (Story 1)
 
 ### S1.T1: Set up OpenAI Batch API integration
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/package.json`, `apps/server/src/services/TranslationService.ts`
 - **Description**:
   - Install `openai` npm package (v4.x)
@@ -41,7 +41,7 @@
 - **Effort**: 2 hours
 
 ### S1.T2: Implement batch preparation (JSONL format)
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/utils/batchPreparer.ts`, `apps/server/src/services/TranslationService.ts`
 - **Description**:
   - Create utility to scan all content files
@@ -58,7 +58,7 @@
 - **Effort**: 4 hours
 
 ### S1.T3: Implement batch upload and job creation
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/services/TranslationService.ts`
 - **Description**:
   - Upload JSONL file to OpenAI Files API
@@ -75,7 +75,7 @@
 - **Effort**: 3 hours
 
 ### S1.T4: Implement batch status polling
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/services/TranslationService.ts`
 - **Description**:
   - Create method to retrieve batch status from OpenAI
@@ -90,7 +90,7 @@
 - **Effort**: 2 hours
 
 ### S1.T5: Implement batch results processing
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/services/TranslationService.ts`
 - **Description**:
   - Download output file from completed batch
@@ -108,7 +108,7 @@
 - **Effort**: 4 hours
 
 ### S1.T6: Implement cost calculation from usage data
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/services/TranslationService.ts`, `apps/server/src/services/CostTrackingService.ts`
 - **Description**:
   - Extract token usage from batch results
@@ -124,7 +124,7 @@
 - **Effort**: 2 hours
 
 ### S1.T7: Add translation validation
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/utils/validateTranslation.ts`
 - **Description**:
   - Create validation utility to check translated content
@@ -145,7 +145,7 @@
 ## Phase 2: API Endpoints (Story 2)
 
 ### S2.T1: Create POST /api/translate/bulk endpoint
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/routes/translate.ts`
 - **Description**:
   - Create new `/api/translate/bulk` route
@@ -162,7 +162,7 @@
 - **Effort**: 2 hours
 
 ### S2.T2: Create GET /api/translate/batch/:batchId endpoint
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/routes/translate.ts`
 - **Description**:
   - Accept GET request with batch ID
@@ -179,7 +179,7 @@
 - **Effort**: 2.5 hours
 
 ### S2.T3: Create GET /api/translate/batches endpoint (list recent)
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/routes/translate.ts`
 - **Description**:
   - List recent batch jobs with metadata
@@ -195,7 +195,7 @@
 - **Effort**: 1.5 hours
 
 ### S2.T4: Add CORS and rate limiting for translation endpoints
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/index.ts`, `apps/server/src/routes/translate.ts`
 - **Description**:
   - Ensure CORS allows CMS origin for translation endpoints
@@ -213,7 +213,7 @@
 ## Phase 3: Cost Tracking (Story 3)
 
 ### S3.T1: Create cost tracking storage structure
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/content/costs/`, `apps/server/src/services/IContentStorage.ts`
 - **Description**:
   - Create `costs/` directory in content storage
@@ -228,7 +228,7 @@
 - **Effort**: 2 hours
 
 ### S3.T2: Create CostTrackingService
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/services/CostTrackingService.ts`
 - **Description**:
   - Create service for cost tracking operations
@@ -244,7 +244,7 @@
 - **Effort**: 3 hours
 
 ### S3.T3: Create cost tracking API endpoints
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/routes/costs.ts`
 - **Description**:
   - GET `/api/costs/summary` - overall cost summary
@@ -260,7 +260,7 @@
 - **Effort**: 2 hours
 
 ### S3.T4: Integrate cost tracking into batch results processing
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/server/src/services/TranslationService.ts`
 - **Description**:
   - After processing batch results, calculate total cost
@@ -279,7 +279,7 @@
 ## Phase 4: SDK Language Support (Story 4)
 
 ### S4.T1: Add language config to SDK
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed (Already implemented)
 - **Files**: `packages/sdk/src/config.ts`, `packages/sdk/src/index.ts`
 - **Description**:
   - Extend `ContentFlowConfig` interface with language fields
@@ -294,7 +294,7 @@
 - **Effort**: 2 hours
 
 ### S4.T2: Implement setLanguage() method
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed (Already implemented)
 - **Files**: `packages/sdk/src/index.ts`
 - **Description**:
   - Create `ContentFlowSDK.setLanguage(lang: string)` method
@@ -324,7 +324,7 @@
 - **Note**: Optional, can be deferred
 
 ### S4.T4: Update consuming apps to support language switching
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/demo/src/main.tsx`, `apps/bwo-tax-forms/src/main.tsx`, `apps/customer-portal/src/main.tsx`
 - **Description**:
   - Add language dropdown to app header
@@ -343,7 +343,7 @@
 ## Phase 5: CMS UI Components (Story 5)
 
 ### S5.T1: Create LanguageDropdown component
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed (Updated existing LanguageSwitcher)
 - **Files**: `apps/cms/src/components/LanguageDropdown.tsx`, `apps/cms/src/App.tsx`
 - **Description**:
   - Create dropdown component with flag emojis for each language
@@ -358,7 +358,7 @@
 - **Effort**: 2 hours
 
 ### S5.T2: Create TranslateAllButton component
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/cms/src/components/TranslateAllButton.tsx`, `apps/cms/src/App.tsx`
 - **Description**:
   - Create button component: "Translate All"
@@ -375,7 +375,7 @@
 - **Effort**: 2 hours
 
 ### S5.T3: Create BatchProgress component
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/cms/src/components/BatchProgress.tsx`
 - **Description**:
   - Create modal/toast component to show batch translation progress
@@ -394,7 +394,7 @@
 - **Effort**: 3 hours
 
 ### S5.T4: Create CostDashboard component
-- [ ] **Status**: Not Started
+- [X] **Status**: Completed
 - **Files**: `apps/cms/src/components/CostDashboard.tsx`
 - **Description**:
   - Create dashboard view for translation costs

@@ -1,0 +1,15 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "home",
+    "lang": "de-DE",
+    "version": 18,
+    "updatedAt": "2026-03-01T15:32:44.387Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T15:32:44.387Z"
+  },
+  "site-title": "Business-Lösungen",
+  "hero-title": "Großartiger Titel hier",
+  "hero-subtitle": "KI-gestützte Übersetzungen, auch für Bilder",
+  "hero-image": "/data/images/optimized/second_hero-800.webp"
+}

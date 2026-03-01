@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { selectApp } from './store/uiSlice';
 import { Dashboard } from './components/Dashboard';
@@ -5,8 +6,10 @@ import { PageSelector } from './components/PageSelector';
 import { PreviewPanel } from './components/PreviewPanel';
 import { EditorPanel } from './components/EditorPanel';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
+import { TranslateAllButton } from './components/TranslateAllButton';
+import { HistoryPage } from './pages/HistoryPage';
 
-function App() {
+function CMSLayout() {
   const dispatch = useAppDispatch();
   const { selectedAppId } = useAppSelector((state) => state.ui);
   const { apps } = useAppSelector((state) => state.apps);
@@ -45,6 +48,7 @@ function App() {
           <h1 className="text-lg font-semibold text-gray-900">{currentApp?.name || 'ContentFlow CMS'}</h1>
         </div>
         <div className="flex items-center gap-3">
+          <TranslateAllButton />
           <LanguageSwitcher />
           <button
             onClick={openInNewTab}
@@ -66,6 +70,15 @@ function App() {
         <EditorPanel />
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<CMSLayout />} />
+      <Route path="/history" element={<HistoryPage />} />
+    </Routes>
   );
 }
 

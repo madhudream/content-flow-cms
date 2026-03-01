@@ -3,6 +3,8 @@ import { logger } from './utils/logger';
 import contentRoutes from './routes/content';
 import appsRoutes from './routes/apps';
 import imagesRoutes from './routes/images';
+import translateRoutes from './routes/translate';
+import costsRoutes from './routes/costs';
 import { file } from 'bun';
 import { join } from 'path';
 
@@ -46,12 +48,12 @@ function getContentType(filePath: string): string | null {
 }
 
 // CORS headers helper
-function getCorsHeaders(origin?: string): HeadersInit {
+function getCorsHeaders(origin?: string): Record<string, string> {
   const allowedOrigins = config.nodeEnv === 'development' 
     ? ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3003', 'http://localhost:8080']
     : []; // Add production domains here
   
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Max-Age': '86400',
@@ -113,6 +115,12 @@ const server = Bun.serve({
       }
       if (url.pathname.startsWith('/api/images')) {
         return await imagesRoutes(req, corsHeaders);
+      }
+      if (url.pathname.startsWith('/api/translate')) {
+        return await translateRoutes(req, corsHeaders);
+      }
+      if (url.pathname.startsWith('/api/costs')) {
+        return await costsRoutes(req, corsHeaders);
       }
       
       // Storage config endpoint - returns blob storage base URL
@@ -308,6 +316,7 @@ logger.info('');
 logger.info('🔌 API Endpoints:');
 logger.info('   Health:            http://localhost:' + server.port + '/health');
 logger.info('   Storage Config:    http://localhost:' + server.port + '/api/config');
+logger.info('   Translation API:   http://localhost:' + server.port + '/api/translate/bulk');
 logger.info('   Apps Config:       http://localhost:' + server.port + '/api/apps');
 logger.info('   Content API:       http://localhost:' + server.port + '/api/content/:filename');
 logger.info('   Image Upload:      http://localhost:' + server.port + '/api/images');

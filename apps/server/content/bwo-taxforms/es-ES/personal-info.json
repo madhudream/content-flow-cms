@@ -1,0 +1,21 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "personal-info",
+    "lang": "es-ES",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.518Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.518Z"
+  },
+  "bwo-field-first-name": "Nombre",
+  "bwo-field-middle-initial": "Inicial del segundo nombre (opcional)",
+  "bwo-field-last-name": "Apellidos",
+  "bwo-field-email": "Correo electrónico",
+  "bwo-field-phone": "Número de teléfono principal",
+  "bwo-field-ssn": "Número de la Seguridad Social",
+  "bwo-field-street-address": "Dirección",
+  "bwo-field-city": "Ciudad",
+  "bwo-field-state": "Estado",
+  "bwo-field-zip-code": "Código postal"
+}

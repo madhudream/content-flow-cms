@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { LanguageSelector } from './LanguageSelector';
 
 interface PageInfo {
   id: string;
@@ -72,6 +73,8 @@ export function PageSidebar() {
       </nav>
 
       <div className="mt-auto space-y-3">
+        <LanguageSelector />
+        
         <button
           onClick={openInNewTab}
           className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all duration-200 text-sm font-medium shadow-sm hover:shadow-md"

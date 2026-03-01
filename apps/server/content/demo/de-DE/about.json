@@ -1,0 +1,15 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "about",
+    "lang": "de-DE",
+    "version": 2,
+    "updatedAt": "2026-03-01T15:32:44.385Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T15:32:44.385Z"
+  },
+  "about-title": "Über ContentFlow CMS",
+  "about-intro": "ContentFlow ist ein modernes, frameworkunabhängiges Content-Management-System, das für Entwickler entwickelt wurde, die Flexibilität benötigen, und für Content-Autoren, die Einfachheit brauchen.",
+  "mission-title": "Unsere Mission",
+  "mission-description": "Wir sind der Überzeugung, dass die Bearbeitung von Inhalten visuell, intuitiv und für alle zugänglich sein sollte, während Entwickler gleichzeitig volle Freiheit haben, mit ihren bevorzugten Tools und Frameworks zu arbeiten."
+}

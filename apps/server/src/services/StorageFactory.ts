@@ -1,4 +1,4 @@
-import { IContentStorage } from './IContentStorage';
+import type { IContentStorage } from './IContentStorage';
 import { LocalStorageService } from './LocalStorageService';
 import { AzureStorageService } from './AzureStorageService';
 import { config } from '../config';

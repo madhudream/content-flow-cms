@@ -1,0 +1,31 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "home",
+    "lang": "fr-FR",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:32:40.079Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.079Z"
+  },
+  "home-hero-title": "Donner aux entreprises les moyens d’offrir un support d’exception",
+  "home-hero-subtitle": "Nous aidons les entreprises à faire évoluer leurs opérations de Customer Success grâce à une infrastructure de support de classe mondiale et une gestion de compte dédiée.",
+  "home-cta-primary": "Commencer",
+  "home-cta-secondary": "En savoir plus",
+  "home-features-title": "Conçu pour l’échelle, pensé pour la simplicité",
+  "home-features-subtitle": "Tout ce dont vous avez besoin pour offrir des expériences client exceptionnelles",
+  "home-feature1-title": "Ultra-rapide",
+  "home-feature1-desc": "Répondez aux demandes des clients en quelques millisecondes grâce à notre infrastructure optimisée.",
+  "home-feature2-title": "Sécurisé & conforme",
+  "home-feature2-desc": "Sécurité de niveau entreprise avec conformité SOC 2 Type II et RGPD prête à l’emploi.",
+  "home-feature3-title": "Analyses en temps réel",
+  "home-feature3-desc": "Suivez les indicateurs de performance et la satisfaction client en temps réel avec de superbes tableaux de bord.",
+  "home-stat1-number": "10,000+",
+  "home-stat1-label": "Clients satisfaits",
+  "home-stat2-number": "99.9%",
+  "home-stat2-label": "SLA de disponibilité",
+  "home-stat3-number": "<2min",
+  "home-stat3-label": "Temps de réponse moyen",
+  "home-stat4-number": "50+",
+  "home-stat4-label": "Pays desservis"
+}

@@ -1,0 +1,14 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "home",
+    "lang": "fr-FR",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.522Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.522Z"
+  },
+  "bwo-field-taxpayer-name": "Nom légal complet (tel qu’indiqué sur la pièce d’identité)",
+  "bwo-field-tax-year": "Année fiscale",
+  "bwo-field-filing-status": "Choisissez votre statut de déclaration"
+}

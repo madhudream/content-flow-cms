@@ -1,0 +1,15 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "home",
+    "lang": "ja-JP",
+    "version": 18,
+    "updatedAt": "2026-03-01T15:32:44.387Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T15:32:44.387Z"
+  },
+  "site-title": "ビジネスソリューション",
+  "hero-title": "ここに素晴らしいタイトルが入ります",
+  "hero-subtitle": "画像を含む、AI を活用した翻訳",
+  "hero-image": "/data/images/optimized/second_hero-800.webp"
+}

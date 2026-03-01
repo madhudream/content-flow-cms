@@ -1,0 +1,17 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "contact",
+    "lang": "ja-JP",
+    "version": 2,
+    "updatedAt": "2026-03-01T15:32:44.381Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T15:32:44.381Z"
+  },
+  "contact-title": "お問い合わせ",
+  "contact-intro": "ContentFlow についてご質問がありますか？ぜひお聞かせください。",
+  "email-title": "メールでのお問い合わせ",
+  "email-address": "hello@contentflow.com",
+  "support-title": "サポート",
+  "support-description": "技術サポートについては、ドキュメントをご覧いただくか、GitHub で issue を作成してください"
+}

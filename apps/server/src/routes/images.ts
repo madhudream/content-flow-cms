@@ -189,7 +189,7 @@ async function updateImagesCatalog(
   }
 }
 
-export default async function imagesRoutes(req: Request, corsHeaders: HeadersInit) {
+export default async function imagesRoutes(req: Request, corsHeaders: Record<string, string>) {
   const url = new URL(req.url);
   const path = url.pathname;
   const storage = getStorageService();

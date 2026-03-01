@@ -1,0 +1,15 @@
+{
+  "$meta": {
+    "appId": "demo",
+    "pageId": "about",
+    "lang": "ja-JP",
+    "version": 2,
+    "updatedAt": "2026-03-01T15:32:44.386Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T15:32:44.386Z"
+  },
+  "about-title": "ContentFlow CMS について",
+  "about-intro": "ContentFlow は、柔軟性を求める開発者と、シンプルさを求めるコンテンツ編集者のために設計された、モダンでフレームワークに依存しないコンテンツ管理システムです。",
+  "mission-title": "私たちのミッション",
+  "mission-description": "私たちは、コンテンツ編集は誰にとっても視覚的で直感的かつアクセスしやすいものであるべきだと考えています。同時に、開発者には好みのツールやフレームワークで自由に構築できる完全な自由を提供します。"
+}

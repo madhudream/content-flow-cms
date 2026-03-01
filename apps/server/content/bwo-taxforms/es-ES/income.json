@@ -1,0 +1,20 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "income",
+    "lang": "es-ES",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.525Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.525Z"
+  },
+  "bwo-field-employer-name": "Nombre del empleador o de la empresa",
+  "bwo-field-employer-ein": "Número de identificación del empleador (EIN)",
+  "bwo-field-wages-amount": "Salarios y sueldos totales (casilla 1 del W-2)",
+  "bwo-field-federal-tax-withheld": "Impuesto federal sobre la renta retenido (casilla 2 del W-2)",
+  "bwo-field-interest-income": "Ingresos por intereses (Formulario 1099-INT)",
+  "bwo-field-dividend-income": "Ingresos por dividendos (Formulario 1099-DIV)",
+  "bwo-field-self-employment-income": "Ingresos por trabajo por cuenta propia (Anexo C)",
+  "bwo-field-rental-income": "Ingresos por propiedades de alquiler",
+  "bwo-field-other-income-description": "Describa otras fuentes de ingresos"
+}

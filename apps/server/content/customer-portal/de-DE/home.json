@@ -1,0 +1,31 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "home",
+    "lang": "de-DE",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:32:40.079Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.079Z"
+  },
+  "home-hero-title": "Unternehmen mit außergewöhnlichem Support stärken",
+  "home-hero-subtitle": "Wir helfen Unternehmen, ihre Customer-Success-Aktivitäten mit einer Support-Infrastruktur auf Weltklasseniveau und dediziertem Account-Management zu skalieren.",
+  "home-cta-primary": "Loslegen",
+  "home-cta-secondary": "Mehr erfahren",
+  "home-features-title": "Für Skalierung gebaut, für Einfachheit entwickelt",
+  "home-features-subtitle": "Alles, was Sie brauchen, um außergewöhnliche Kundenerlebnisse zu bieten",
+  "home-feature1-title": "Blitzschnell",
+  "home-feature1-desc": "Beantworten Sie Kundenanfragen in Millisekunden mit unserer optimierten Infrastruktur.",
+  "home-feature2-title": "Sicher & konform",
+  "home-feature2-desc": "Sicherheit in Unternehmensqualität mit SOC 2 Typ II und DSGVO-Konformität direkt einsatzbereit.",
+  "home-feature3-title": "Analysen in Echtzeit",
+  "home-feature3-desc": "Verfolgen Sie Leistungskennzahlen und Kundenzufriedenheit in Echtzeit mit aussagekräftigen Dashboards.",
+  "home-stat1-number": "10,000+",
+  "home-stat1-label": "Zufriedene Kunden",
+  "home-stat2-number": "99.9%",
+  "home-stat2-label": "SLA-Verfügbarkeit",
+  "home-stat3-number": "<2min",
+  "home-stat3-label": "Durchschn. Reaktionszeit",
+  "home-stat4-number": "50+",
+  "home-stat4-label": "Länder, die wir bedienen"
+}

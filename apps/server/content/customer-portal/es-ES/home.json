@@ -1,0 +1,31 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "home",
+    "lang": "es-ES",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:32:40.079Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.079Z"
+  },
+  "home-hero-title": "Impulsando a las empresas con un soporte excepcional",
+  "home-hero-subtitle": "Ayudamos a las empresas a escalar sus operaciones de éxito del cliente con una infraestructura de soporte de primer nivel y una gestión de cuentas dedicada.",
+  "home-cta-primary": "Empezar",
+  "home-cta-secondary": "Más información",
+  "home-features-title": "Creado para escalar, diseñado para la simplicidad",
+  "home-features-subtitle": "Todo lo que necesitas para ofrecer experiencias excepcionales a tus clientes",
+  "home-feature1-title": "Ultrarrápido",
+  "home-feature1-desc": "Responde a las consultas de los clientes en milisegundos con nuestra infraestructura optimizada.",
+  "home-feature2-title": "Seguro y conforme",
+  "home-feature2-desc": "Seguridad de nivel empresarial con cumplimiento SOC 2 Tipo II y RGPD desde el primer momento.",
+  "home-feature3-title": "Analítica en tiempo real",
+  "home-feature3-desc": "Supervisa métricas de rendimiento y satisfacción del cliente en tiempo real con paneles de control atractivos.",
+  "home-stat1-number": "10,000+",
+  "home-stat1-label": "Clientes satisfechos",
+  "home-stat2-number": "99.9%",
+  "home-stat2-label": "SLA de disponibilidad",
+  "home-stat3-number": "<2min",
+  "home-stat3-label": "Tiempo medio de respuesta",
+  "home-stat4-number": "50+",
+  "home-stat4-label": "Países atendidos"
+}

@@ -68,7 +68,8 @@ export const useContentStore = create<ContentStoreState>((set, get) => ({
 
     try {
       const adapter = new LocalJsonAdapter(config.storageUrl);
-      const filename = `${config.appId}-${pageId}-${config.language}.json`;
+      // Use new folder structure: appId/language/pageId.json
+      const filename = `${config.appId}/${config.language}/${pageId}.json`;
       const contentMap: ContentMap = await adapter.read(filename);
 
       // Update content map

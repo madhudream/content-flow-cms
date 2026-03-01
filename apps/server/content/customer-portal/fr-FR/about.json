@@ -1,0 +1,32 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "about",
+    "lang": "fr-FR",
+    "version": 3,
+    "updatedAt": "2026-03-01T18:32:40.078Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.078Z"
+  },
+  "about-hero-title": "Que serait-il possible d’accomplir si un support client exceptionnel était accessible à tous ?",
+  "about-hero-subtitle": "Notre mission est d’accélérer la croissance des entreprises grâce à des opérations de support intelligentes. Ancré dans la réalité des flux de travail du service client et porté par une innovation réfléchie, Customer Portal aide les entreprises à fonctionner efficacement et à ravir leurs clients.",
+  "about-story-label": "Résoudre un problème universel",
+  "about-story-p1": "Chaque entreprise dépend d’un excellent support client. Il soutient la satisfaction des clients et éclaire les décisions qui façonnent les entreprises. Pourtant, la plupart des organisations ne reçoivent jamais d’informations opérationnelles réellement utiles, car les équipes de support sont submergées par des tâches banales et chronophages. Les entreprises font face aux mêmes pressions. Au lieu d’utiliser le support comme un atout stratégique, elles sont happées par un travail administratif qui disperse l’attention et freine la croissance.",
+  "about-story-p2": "Customer Portal existe pour changer cette dynamique. Lorsque les équipes de support peuvent travailler avec rapidité et précision, les bénéfices se répercutent sur l’ensemble de l’entreprise. Nous rendons cela possible en automatisant les tâches répétitives afin que les équipes puissent réorienter leur temps et leur expertise vers des relations clients à forte valeur ajoutée.",
+  "about-mission-label": "Redéfinir l’avenir des opérations client",
+  "about-story-p3": "Le service client entre dans une phase de profonde transformation, et les opérations de support constituent l’un des domaines réels les plus complexes pour l’IA appliquée. Le travail implique des données clients désordonnées et incohérentes, des flux de travail complexes et d’innombrables cas limites qui s’étendent sur de nombreuses étapes conditionnelles.",
+  "about-story-p4": "Résoudre ces problèmes nécessite de construire des systèmes capables de s’adapter aux contraintes du monde réel, de planifier des flux de travail en plusieurs étapes et d’exécuter de manière fiable à grande échelle. Nous nous engageons à relever ce défi, car nous pensons qu’un support exceptionnel devrait être accessible à chaque entreprise, pas seulement à celles qui disposent d’équipes ou de budgets colossaux.",
+  "about-team-label": "Construisez avec nous",
+  "about-team-title": "Nous sommes une équipe distribuée à travers le monde.",
+  "about-team-p1": "L’ensemble de l’entreprise se réunit plusieurs fois par an et nous nous retrouvons souvent en plus petits groupes lorsque la collaboration à haute intensité est utile. Nous savons que chacun travaille différemment, c’est pourquoi nous offrons à chacun la flexibilité de travailler de la manière qui lui permet d’avancer vite et de réfléchir clairement.",
+  "about-team-p2": "Au sein d’une petite équipe, vous aurez une véritable responsabilité sur l’ensemble de la stack. Ici, vous ne vous contenterez pas de livrer des fonctionnalités. Chaque interaction avec un client et chaque changement que vous déployez façonne directement la manière dont les entreprises fonctionnent. Vous travaillerez en étroite collaboration avec des dirigeants d’entreprise pour comprendre leurs besoins, introduire de nouvelles technologies, remodeler les flux de travail et libérer une croissance qu’ils ne pouvaient pas atteindre auparavant.",
+  "about-values-label": "Nos principes",
+  "about-value1-title": "Le client d’abord",
+  "about-value1-desc": "Chaque décision que nous prenons commence par une question : en quoi cela aide-t-il nos clients à réussir ?",
+  "about-value2-title": "Aller vite",
+  "about-value2-desc": "La vitesse compte. Nous livrons tôt et souvent, en apprenant et en itérant à partir des retours du terrain.",
+  "about-value3-title": "Transparence radicale",
+  "about-value3-desc": "Nous croyons en une communication ouverte, en interne comme avec nos clients. Pas de surprises, pas d’agendas cachés.",
+  "about-value4-title": "Adopter la simplicité",
+  "about-value4-desc": "La complexité est l’ennemie de l’exécution. Nous nous efforçons de rendre tout ce que nous construisons simple et intuitif."
+}

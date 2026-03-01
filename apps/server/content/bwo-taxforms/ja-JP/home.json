@@ -1,0 +1,14 @@
+{
+  "$meta": {
+    "appId": "bwo-taxforms",
+    "pageId": "home",
+    "lang": "ja-JP",
+    "version": 2,
+    "updatedAt": "2026-03-01T18:39:44.524Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:39:44.524Z"
+  },
+  "bwo-field-taxpayer-name": "氏名（身分証明書に記載されている正式名称）",
+  "bwo-field-tax-year": "課税年度",
+  "bwo-field-filing-status": "申告状況を選択"
+}

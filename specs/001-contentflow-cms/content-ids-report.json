@@ -1,0 +1,688 @@
+[
+  {
+    "appId": "demo",
+    "totalIds": 21,
+    "pages": [
+      {
+        "pageId": "shared",
+        "contentIds": [
+          {
+            "id": "site-title",
+            "type": "text",
+            "file": "demo/src/components/Header.tsx",
+            "line": 16
+          }
+        ]
+      },
+      {
+        "pageId": "home",
+        "contentIds": [
+          {
+            "id": "cta-button",
+            "type": "text",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 42
+          },
+          {
+            "id": "feature-1-description",
+            "type": "text",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 65
+          },
+          {
+            "id": "feature-1-title",
+            "type": "text",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 56
+          },
+          {
+            "id": "feature-2-description",
+            "type": "text",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 86
+          },
+          {
+            "id": "feature-2-title",
+            "type": "text",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 77
+          },
+          {
+            "id": "feature-3-description",
+            "type": "text",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 107
+          },
+          {
+            "id": "feature-3-title",
+            "type": "text",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 98
+          },
+          {
+            "id": "hero-image",
+            "type": "image",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 30
+          },
+          {
+            "id": "hero-subtitle",
+            "type": "image",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 19
+          },
+          {
+            "id": "hero-title",
+            "type": "image",
+            "file": "demo/src/pages/Home.tsx",
+            "line": 10
+          }
+        ]
+      },
+      {
+        "pageId": "contact",
+        "contentIds": [
+          {
+            "id": "contact-intro",
+            "type": "text",
+            "file": "demo/src/pages/Contact.tsx",
+            "line": 18
+          },
+          {
+            "id": "contact-title",
+            "type": "text",
+            "file": "demo/src/pages/Contact.tsx",
+            "line": 8
+          },
+          {
+            "id": "email-address",
+            "type": "text",
+            "file": "demo/src/pages/Contact.tsx",
+            "line": 39
+          },
+          {
+            "id": "email-title",
+            "type": "text",
+            "file": "demo/src/pages/Contact.tsx",
+            "line": 30
+          },
+          {
+            "id": "support-description",
+            "type": "text",
+            "file": "demo/src/pages/Contact.tsx",
+            "line": 60
+          },
+          {
+            "id": "support-title",
+            "type": "text",
+            "file": "demo/src/pages/Contact.tsx",
+            "line": 51
+          }
+        ]
+      },
+      {
+        "pageId": "about",
+        "contentIds": [
+          {
+            "id": "about-intro",
+            "type": "text",
+            "file": "demo/src/pages/About.tsx",
+            "line": 19
+          },
+          {
+            "id": "about-title",
+            "type": "text",
+            "file": "demo/src/pages/About.tsx",
+            "line": 8
+          },
+          {
+            "id": "mission-description",
+            "type": "text",
+            "file": "demo/src/pages/About.tsx",
+            "line": 38
+          },
+          {
+            "id": "mission-title",
+            "type": "text",
+            "file": "demo/src/pages/About.tsx",
+            "line": 29
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "appId": "customer-portal",
+    "totalIds": 60,
+    "pages": [
+      {
+        "pageId": "about",
+        "contentIds": [
+          {
+            "id": "about-hero-subtitle",
+            "type": "image",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 18
+          },
+          {
+            "id": "about-hero-title",
+            "type": "image",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 11
+          },
+          {
+            "id": "about-mission-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 60
+          },
+          {
+            "id": "about-story-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 31
+          },
+          {
+            "id": "about-story-p1",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 39
+          },
+          {
+            "id": "about-story-p2",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 46
+          },
+          {
+            "id": "about-story-p3",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 68
+          },
+          {
+            "id": "about-story-p4",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 75
+          },
+          {
+            "id": "about-team-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 89
+          },
+          {
+            "id": "about-team-p1",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 104
+          },
+          {
+            "id": "about-team-p2",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 111
+          },
+          {
+            "id": "about-team-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 96
+          },
+          {
+            "id": "about-value1-desc",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 143
+          },
+          {
+            "id": "about-value1-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 136
+          },
+          {
+            "id": "about-value2-desc",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 161
+          },
+          {
+            "id": "about-value2-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 154
+          },
+          {
+            "id": "about-value3-desc",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 179
+          },
+          {
+            "id": "about-value3-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 172
+          },
+          {
+            "id": "about-value4-desc",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 197
+          },
+          {
+            "id": "about-value4-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 190
+          },
+          {
+            "id": "about-values-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/AboutPage.tsx",
+            "line": 125
+          }
+        ]
+      },
+      {
+        "pageId": "customers",
+        "contentIds": [
+          {
+            "id": "customers-cta-button",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 226
+          },
+          {
+            "id": "customers-cta-subtitle",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 219
+          },
+          {
+            "id": "customers-cta-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 212
+          },
+          {
+            "id": "customers-hero-subtitle",
+            "type": "image",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 19
+          },
+          {
+            "id": "customers-hero-title",
+            "type": "image",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 12
+          },
+          {
+            "id": "customers-map-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 33
+          },
+          {
+            "id": "customers-map-subtitle",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 47
+          },
+          {
+            "id": "customers-map-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 40
+          },
+          {
+            "id": "customers-testimonial1-name",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 121
+          },
+          {
+            "id": "customers-testimonial1-role",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 128
+          },
+          {
+            "id": "customers-testimonial1-text",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 113
+          },
+          {
+            "id": "customers-testimonial2-name",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 155
+          },
+          {
+            "id": "customers-testimonial2-role",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 162
+          },
+          {
+            "id": "customers-testimonial2-text",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 147
+          },
+          {
+            "id": "customers-testimonial3-name",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 189
+          },
+          {
+            "id": "customers-testimonial3-role",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 196
+          },
+          {
+            "id": "customers-testimonial3-text",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 181
+          },
+          {
+            "id": "customers-testimonials-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 88
+          },
+          {
+            "id": "customers-testimonials-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/CustomersPage.tsx",
+            "line": 95
+          }
+        ]
+      },
+      {
+        "pageId": "home",
+        "contentIds": [
+          {
+            "id": "home-cta-primary",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 25
+          },
+          {
+            "id": "home-cta-secondary",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 32
+          },
+          {
+            "id": "home-feature1-desc",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 81
+          },
+          {
+            "id": "home-feature1-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 75
+          },
+          {
+            "id": "home-feature2-desc",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 102
+          },
+          {
+            "id": "home-feature2-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 96
+          },
+          {
+            "id": "home-feature3-desc",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 123
+          },
+          {
+            "id": "home-feature3-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 117
+          },
+          {
+            "id": "home-features-subtitle",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 59
+          },
+          {
+            "id": "home-features-title",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 53
+          },
+          {
+            "id": "home-hero-subtitle",
+            "type": "image",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 17
+          },
+          {
+            "id": "home-hero-title",
+            "type": "image",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 11
+          },
+          {
+            "id": "home-stat1-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 145
+          },
+          {
+            "id": "home-stat1-number",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 139
+          },
+          {
+            "id": "home-stat2-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 159
+          },
+          {
+            "id": "home-stat2-number",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 153
+          },
+          {
+            "id": "home-stat3-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 173
+          },
+          {
+            "id": "home-stat3-number",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 167
+          },
+          {
+            "id": "home-stat4-label",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 187
+          },
+          {
+            "id": "home-stat4-number",
+            "type": "text",
+            "file": "customer-portal/src/pages/HomePage.tsx",
+            "line": 181
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "appId": "bwo-tax-forms",
+    "totalIds": 22,
+    "pages": [
+      {
+        "pageId": "personal-info",
+        "contentIds": [
+          {
+            "id": "bwo-field-city",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-email",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-first-name",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-last-name",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-middle-initial",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-phone",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-ssn",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-state",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-street-address",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-zip-code",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/personal-info.json",
+            "line": 0
+          }
+        ]
+      },
+      {
+        "pageId": "home",
+        "contentIds": [
+          {
+            "id": "bwo-field-filing-status",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/home.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-tax-year",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/home.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-taxpayer-name",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/home.json",
+            "line": 0
+          }
+        ]
+      },
+      {
+        "pageId": "income",
+        "contentIds": [
+          {
+            "id": "bwo-field-dividend-income",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-employer-ein",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-employer-name",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-federal-tax-withheld",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-interest-income",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-other-income-description",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-rental-income",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-self-employment-income",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          },
+          {
+            "id": "bwo-field-wages-amount",
+            "type": "metadata",
+            "file": "bwo-tax-forms/src/metadata/income.json",
+            "line": 0
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -7,13 +7,14 @@ interface FormFieldProps {
   value: string;
   onChange: (fieldId: string, value: string) => void;
   error: FieldError | null;
+  pageId: string;  // Add pageId prop to look up translated content
 }
 
 /**
  * FormField component - Renders individual form field based on metadata
  * Uses ContentComponent for editable labels
  */
-export function FormField({ field, value, onChange, error }: FormFieldProps) {
+export function FormField({ field, value, onChange, error, pageId }: FormFieldProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     onChange(field.id, e.target.value);
   };
@@ -34,6 +35,7 @@ export function FormField({ field, value, onChange, error }: FormFieldProps) {
       return (
         <ContentComponent
           contentId={field.contentId}
+          pageId={pageId}
           defaultText={field.label}
           data-content-id={field.contentId}
           className="block text-sm font-medium text-gray-700"

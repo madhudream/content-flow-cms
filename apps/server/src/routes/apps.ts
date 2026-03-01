@@ -1,7 +1,7 @@
 import { getStorageService } from '../services/StorageFactory';
 import { logger } from '../utils/logger';
 
-export default async function appsRoutes(req: Request, corsHeaders: HeadersInit) {
+export default async function appsRoutes(req: Request, corsHeaders: Record<string, string>) {
   const url = new URL(req.url);
   const path = url.pathname;
   const storage = getStorageService();

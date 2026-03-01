@@ -1,0 +1,30 @@
+{
+  "$meta": {
+    "appId": "customer-portal",
+    "pageId": "customers",
+    "lang": "ja-JP",
+    "version": 3,
+    "updatedAt": "2026-03-01T18:32:40.077Z",
+    "translatedFrom": "en-US",
+    "translatedAt": "2026-03-01T18:32:40.077Z"
+  },
+  "customers-hero-title": "世界中の企業から信頼されています",
+  "customers-hero-subtitle": "スタートアップから大企業まで、世界中のビジネスが Customer Portal を利用して、卓越したサポート体験を提供しています。",
+  "customers-map-label": "サービス提供エリア",
+  "customers-map-title": "アメリカ全土のビジネスを支えています",
+  "customers-map-subtitle": "沿岸部のスタートアップから内陸部の大企業まで、10,000 社以上が、毎日欠かさず優れたカスタマーエクスペリエンスを提供するために私たちを信頼しています。",
+  "customers-testimonials-label": "お客様の声",
+  "customers-testimonials-title": "私たちが選ばれる理由",
+  "customers-testimonial1-text": "Customer Portal によって、サポート対応の方法が一変しました。最初の 1 か月で応答時間が 70％短縮されました。",
+  "customers-testimonial1-name": "Sarah Chen",
+  "customers-testimonial1-role": "サポート責任者, TechCorp",
+  "customers-testimonial2-text": "分析ダッシュボードだけでも導入する価値があります。お客様が本当に何を求めているのか、ようやく理解できました。",
+  "customers-testimonial2-name": "Michael Rodriguez",
+  "customers-testimonial2-role": "CTO, StartupXYZ",
+  "customers-testimonial3-text": "これまでで最高の投資です。3 か月で顧客満足度スコアが 40％向上しました。",
+  "customers-testimonial3-name": "Emma Thompson",
+  "customers-testimonial3-role": "カスタマーサクセス担当副社長, Enterprise Co",
+  "customers-cta-title": "数千社の満足しているお客様に加わりましょう",
+  "customers-cta-subtitle": "今日から卓越したカスタマーエクスペリエンスの提供を始めましょう",
+  "customers-cta-button": "無料で始める"
+}

@@ -118,7 +118,6 @@ export class TranslationService {
       targetLangs: string[];
       totalRequests: number;
       fileIds: string[];
-      appIds?: string[];  // Optional app filter
     }
   ): Promise<string> {
     logger.info('Uploading batch file to OpenAI', {
@@ -169,7 +168,6 @@ export class TranslationService {
         targetLangs: metadata.targetLangs,
         totalRequests: metadata.totalRequests,
         fileIds: metadata.fileIds,
-        appIds: metadata.appIds,  // Store appIds for filtering
         inputFileId: uploadedFile.id,
         model: this.model,  // Track which model was used
         temperature: this.temperature,  // Track temperature setting

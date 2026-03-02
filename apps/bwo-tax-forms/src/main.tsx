@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ContentFlowSDK } from '@contentflow/sdk';
+import '@contentflow/sdk/webcomponent'; // Register web components
 import { initCMSMode } from './services/cmsMode';
 import { getPersistedLanguage } from './components/LanguageSelector';
 import './index.css';

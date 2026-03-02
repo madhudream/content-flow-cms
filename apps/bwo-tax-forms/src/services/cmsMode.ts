@@ -1,7 +1,12 @@
 /**
  * CMS Mode support for BWO Tax Forms
  * Handles postMessage communication with CMS parent window
+ * 
+ * Note: Input help edit functionality is handled by the InputHelpElement web component itself.
+ * This file only handles content (text/image) click detection for CMS mode.
  */
+
+import { isCMSMode } from '../utils/cmsMode';
 
 interface ContentClickMessage {
   type: 'CONTENTFLOW_CONTENT_CLICK';
@@ -20,16 +25,14 @@ interface PreviewUpdateMessage {
  * Initialize CMS mode when app is loaded in iframe with ?cms-mode=true
  */
 export function initCMSMode() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const isCMSMode = urlParams.get('cms-mode') === 'true';
-
   if (!isCMSMode || window === window.parent) {
-    return; // Not in CMS mode or not in iframe
+    console.log('[BWO Tax Forms] Not in CMS mode');
+    return;
   }
 
-  console.log('[BWO Tax Forms] CMS mode enabled');
+  console.log('[BWO Tax Forms] ✅ CMS mode enabled');
 
-  // Listen for CMS initialization
+  // Listen for CMS messages
   window.addEventListener('message', handleCMSMessage);
 
   // Wait for CMS_INIT message before enabling click handlers
@@ -43,18 +46,14 @@ export function initCMSMode() {
 
     if (message.type === 'CONTENTFLOW_CMS_INIT') {
       clearTimeout(initTimeout);
-      console.log('[BWO Tax Forms] Received CMS_INIT');
+      console.log('[BWO Tax Forms] ✅ Received CMS_INIT');
 
       // Send acknowledgment
-      window.parent.postMessage(
-        { type: 'CONTENTFLOW_CMS_ACK' },
-        '*'
-      );
+      window.parent.postMessage({ type: 'CONTENTFLOW_CMS_ACK' }, '*');
 
-      // Enable click handlers
+      // Enable click handlers for content elements (text/images)
       enableContentClickHandlers();
     } else if (message.type === 'CONTENTFLOW_PREVIEW_UPDATE') {
-      // Handle live preview updates
       handlePreviewUpdate(message);
     }
   }
@@ -62,15 +61,18 @@ export function initCMSMode() {
 
 /**
  * Add click handlers to all elements with data-content-id
+ * Note: Input help is handled by the InputHelpElement web component itself
  */
 function enableContentClickHandlers() {
+  console.log('[BWO Tax Forms] 🎯 Enabling content click handlers');
+  
   // Inject CMS mode styles
   injectCMSStyles();
 
   // Track currently selected element
   let selectedElement: HTMLElement | null = null;
 
-  // Use event delegation on document body
+  // Use event delegation on document body for content elements
   document.body.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
     const contentElement = target.closest('[data-content-id]') as HTMLElement;
@@ -111,10 +113,10 @@ function enableContentClickHandlers() {
     };
 
     window.parent.postMessage(message, '*');
-    console.log('[BWO Tax Forms] Content clicked:', contentId);
+    console.log('[BWO Tax Forms] 📝 Content clicked:', contentId);
   });
 
-  console.log('[BWO Tax Forms] Click handlers enabled');
+  console.log('[BWO Tax Forms] ✅ Click handlers enabled');
 }
 
 /**
@@ -193,7 +195,7 @@ function injectCMSStyles() {
   `;
 
   document.head.appendChild(style);
-  console.log('[BWO Tax Forms] CMS styles injected');
+  console.log('[BWO Tax Forms] ✅ CMS styles injected');
 }
 
 /**
@@ -215,5 +217,5 @@ function handlePreviewUpdate(message: PreviewUpdateMessage) {
     }
   });
   
-  console.log('[BWO Tax Forms] Preview updated:', contentId, newValue);
+  console.log('[BWO Tax Forms] 📝 Preview updated:', contentId, newValue);
 }

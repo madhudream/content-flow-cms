@@ -11,6 +11,7 @@
           "type": "text",
           "label": "Employer Name",
           "contentId": "bwo-field-employer-name",
+          "inputHelpId": "employer-name-help",
           "placeholder": "ABC Corporation",
           "required": true,
           "validation": {
@@ -24,6 +25,7 @@
           "type": "text",
           "label": "Employer Identification Number (EIN)",
           "contentId": "bwo-field-employer-ein",
+          "inputHelpId": "employer-ein-help",
           "placeholder": "XX-XXXXXXX",
           "required": true,
           "validation": {
@@ -36,6 +38,7 @@
           "type": "number",
           "label": "Total Wages (Box 1)",
           "contentId": "bwo-field-wages-amount",
+          "inputHelpId": "wages-help",
           "placeholder": "50000.00",
           "required": true,
           "validation": {
@@ -49,6 +52,7 @@
           "type": "number",
           "label": "Federal Income Tax Withheld (Box 2)",
           "contentId": "bwo-field-federal-tax-withheld",
+          "inputHelpId": "federal-tax-help",
           "placeholder": "5000.00",
           "required": true,
           "validation": {
@@ -68,6 +72,7 @@
           "type": "number",
           "label": "Interest Income (Form 1099-INT)",
           "contentId": "bwo-field-interest-income",
+          "inputHelpId": "interest-income-help",
           "placeholder": "500.00",
           "validation": {
             "min": 0,
@@ -80,6 +85,7 @@
           "type": "number",
           "label": "Dividend Income (Form 1099-DIV)",
           "contentId": "bwo-field-dividend-income",
+          "inputHelpId": "dividend-income-help",
           "placeholder": "250.00",
           "validation": {
             "min": 0,
@@ -98,6 +104,7 @@
           "type": "number",
           "label": "Self-Employment Income",
           "contentId": "bwo-field-self-employment-income",
+          "inputHelpId": "self-employment-help",
           "placeholder": "10000.00",
           "validation": {
             "min": 0,
@@ -110,6 +117,7 @@
           "type": "number",
           "label": "Rental Income",
           "contentId": "bwo-field-rental-income",
+          "inputHelpId": "rental-income-help",
           "placeholder": "12000.00",
           "validation": {
             "min": 0,
@@ -122,6 +130,7 @@
           "type": "textarea",
           "label": "Other Income Description",
           "contentId": "bwo-field-other-income-description",
+          "inputHelpId": "other-income-description-help",
           "placeholder": "Describe any other income sources...",
           "validation": {
             "maxLength": 500,

@@ -1,4 +1,5 @@
 import { useContentStore } from '../core/store';
+import type { InputHelpContent } from '../types';
 
 /**
  * Infer pageId from current browser URL path
@@ -57,4 +58,14 @@ export function useContent(contentId: string, pageId?: string): string | undefin
   const resolvedPageId = pageId || inferPageIdFromUrl();
 
   return contentMaps[resolvedPageId]?.[contentId];
+}
+
+/**
+ * React hook to access input help content for a specific inputHelpId
+ *
+ * @param inputHelpId - Unique identifier for the input help
+ * @returns InputHelpContent or undefined if not found
+ */
+export function useInputHelp(inputHelpId: string): InputHelpContent | undefined {
+  return useContentStore((state) => state.getInputHelp(inputHelpId));
 }

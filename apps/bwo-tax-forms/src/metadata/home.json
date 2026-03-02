@@ -11,6 +11,7 @@
           "type": "text",
           "label": "Full Legal Name",
           "contentId": "bwo-field-taxpayer-name",
+          "inputHelpId": "taxpayer-name-help",
           "placeholder": "Enter your full legal name",
           "required": true,
           "validation": {
@@ -24,6 +25,7 @@
           "type": "select",
           "label": "Tax Year",
           "contentId": "bwo-field-tax-year",
+          "inputHelpId": "tax-year-help",
           "required": true,
           "options": [
             { "value": "2025", "label": "2025" },
@@ -36,6 +38,7 @@
           "type": "select",
           "label": "Filing Status",
           "contentId": "bwo-field-filing-status",
+          "inputHelpId": "filing-status-help",
           "required": true,
           "options": [
             { "value": "single", "label": "Single" },

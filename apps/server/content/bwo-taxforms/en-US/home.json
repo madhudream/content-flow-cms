@@ -3,8 +3,25 @@
     "appId": "bwo-taxforms",
     "pageId": "home",
     "lang": "en-US",
-    "version": 1,
-    "updatedAt": "2026-02-28T00:00:00Z"
+    "version": 23,
+    "updatedAt": "2026-03-02T06:33:36.574Z"
+  },
+  "inputHelp": {
+    "taxpayer-name-help": {
+      "enabled": true,
+      "message": "Your legal first name is the first (given) name that appears on your official government-issued documents—most commonly your birth certificate, passport, or driver’s license/state ID. It’s the name used for identity verification on things like taxes, banking, employment paperwork, and travel. ",
+      "iconType": "exclamation"
+    },
+    "tax-year-help": {
+      "enabled": false,
+      "message": "",
+      "iconType": "info"
+    },
+    "filing-status-help": {
+      "enabled": false,
+      "message": "",
+      "iconType": "info"
+    }
   },
   "bwo-field-taxpayer-name": "Full Legal Name (as shown on ID)",
   "bwo-field-tax-year": "Tax Year",

@@ -28,6 +28,7 @@ export interface FormField {
   type: 'text' | 'email' | 'tel' | 'number' | 'select' | 'textarea';
   label: string;                   // Plain text label (fallback)
   contentId?: string;              // Optional: content-id for editable label
+  inputHelpId?: string;            // Optional: input-help-id for help panel
   placeholder?: string;            // Optional placeholder text
   required?: boolean;              // Whether field is required
   validation?: FieldValidation;    // Optional validation rules

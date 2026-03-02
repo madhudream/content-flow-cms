@@ -19,11 +19,21 @@ export interface ContentMeta {
 }
 
 /**
+ * Input help content configuration
+ */
+export interface InputHelpContent {
+  enabled: boolean;
+  message: string;
+  iconType: 'info' | 'exclamation';
+}
+
+/**
  * Content file structure with metadata
  */
 export interface ContentFile {
   $meta: ContentMeta;
-  [contentId: string]: string | ContentMeta;
+  inputHelp?: Record<string, InputHelpContent>;
+  [contentId: string]: string | ContentMeta | Record<string, InputHelpContent> | undefined;
 }
 
 /**
@@ -72,6 +82,11 @@ export interface ContentStoreState {
   contentMaps: Record<string, ContentMap>;
 
   /**
+   * Input help configurations keyed by inputHelpId
+   */
+  inputHelp: Record<string, InputHelpContent>;
+
+  /**
    * Loading status for each page
    */
   status: Record<string, ContentStatus>;
@@ -87,5 +102,6 @@ export interface ContentStoreState {
   initialize: (config: ContentFlowConfig) => Promise<void>;
   setLanguage: (language: string) => Promise<void>;
   getContent: (pageId: string, contentId: string) => string | undefined;
+  getInputHelp: (inputHelpId: string) => InputHelpContent | undefined;
   fetchPageContent: (pageId: string) => Promise<void>;
 }

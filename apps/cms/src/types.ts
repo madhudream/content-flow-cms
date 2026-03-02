@@ -28,9 +28,16 @@ export interface ContentMeta {
   updatedAt: string;
 }
 
+export interface InputHelpContent {
+  enabled: boolean;
+  message: string;
+  iconType: 'info' | 'exclamation';
+}
+
 export interface ContentFile {
   $meta: ContentMeta;
-  [key: string]: string | ContentMeta; // Content key-value pairs
+  inputHelp?: Record<string, InputHelpContent>;
+  [key: string]: string | ContentMeta | Record<string, InputHelpContent> | undefined;
 }
 
 export type ContentMap = Record<string, string>;

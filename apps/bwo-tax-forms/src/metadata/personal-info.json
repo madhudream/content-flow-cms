@@ -11,6 +11,7 @@
           "type": "text",
           "label": "First Name",
           "contentId": "bwo-field-first-name",
+          "inputHelpId": "firstName-help",
           "placeholder": "Enter first name",
           "required": true,
           "validation": {
@@ -24,6 +25,7 @@
           "type": "text",
           "label": "Middle Initial",
           "contentId": "bwo-field-middle-initial",
+          "inputHelpId": "middle-initial-help",
           "placeholder": "M",
           "validation": {
             "maxLength": 1,
@@ -36,6 +38,7 @@
           "type": "text",
           "label": "Last Name",
           "contentId": "bwo-field-last-name",
+          "inputHelpId": "lastName-help",
           "placeholder": "Enter last name",
           "required": true,
           "validation": {
@@ -55,6 +58,7 @@
           "type": "email",
           "label": "Email Address",
           "contentId": "bwo-field-email",
+          "inputHelpId": "email-help",
           "placeholder": "your.email@example.com",
           "required": true,
           "validation": {
@@ -66,6 +70,7 @@
           "type": "tel",
           "label": "Phone Number",
           "contentId": "bwo-field-phone",
+          "inputHelpId": "phone-help",
           "placeholder": "(555) 123-4567",
           "required": true,
           "validation": {
@@ -78,6 +83,7 @@
           "type": "text",
           "label": "Social Security Number",
           "contentId": "bwo-field-ssn",
+          "inputHelpId": "ssn-help",
           "placeholder": "XXX-XX-XXXX",
           "required": true,
           "validation": {
@@ -96,6 +102,7 @@
           "type": "text",
           "label": "Street Address",
           "contentId": "bwo-field-street-address",
+          "inputHelpId": "street-address-help",
           "placeholder": "123 Main Street",
           "required": true,
           "validation": {
@@ -109,6 +116,7 @@
           "type": "text",
           "label": "City",
           "contentId": "bwo-field-city",
+          "inputHelpId": "city-help",
           "placeholder": "Springfield",
           "required": true,
           "validation": {
@@ -122,6 +130,7 @@
           "type": "select",
           "label": "State",
           "contentId": "bwo-field-state",
+          "inputHelpId": "state-help",
           "required": true,
           "options": [
             { "value": "AL", "label": "Alabama" },
@@ -136,6 +145,7 @@
           "type": "text",
           "label": "ZIP Code",
           "contentId": "bwo-field-zip-code",
+          "inputHelpId": "zip-code-help",
           "placeholder": "12345",
           "required": true,
           "validation": {

@@ -9,4 +9,5 @@ export type {
   ContentMeta,
   ContentStoreState,
   ContentStatus,
+  InputHelpContent,
 } from './types';

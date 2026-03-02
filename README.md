@@ -200,3 +200,18 @@ contentflow-cms/
 contenttoAckcoar├──si
 ```se```
 T
+
+
+ git reset --soft HEAD~1  
+
+
+
+ <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VF1X4MBK9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VF1X4MBK9R');
+</script>

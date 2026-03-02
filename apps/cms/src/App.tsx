@@ -5,7 +5,7 @@ import { Dashboard } from './components/Dashboard';
 import { PageSelector } from './components/PageSelector';
 import { PreviewPanel } from './components/PreviewPanel';
 import { EditorPanel } from './components/EditorPanel';
-import { LanguageSwitcher } from './components/LanguageSwitcher';
+import { InputHelpEditorPanel } from './components/InputHelpEditorPanel';
 import { TranslateAllButton } from './components/TranslateAllButton';
 import { HistoryPage } from './pages/HistoryPage';
 
@@ -25,8 +25,22 @@ function CMSLayout() {
   // Hide page selector for apps with their own navigation (e.g., BWO Tax Forms)
   const showPageSelector = selectedAppId !== 'bwo-taxforms';
 
+  // Map app IDs to URL paths
+  const getAppPath = (appId: string): string => {
+    const appPaths: Record<string, string> = {
+      'bwo-taxforms': '/bwo',
+      'demo': '/demo',
+      'customer-portal': '/portal',
+    };
+    return appPaths[appId] || '/';
+  };
+
   const openInNewTab = () => {
-    window.open(window.location.href, '_blank', 'noopener,noreferrer');
+    if (!selectedAppId) return;
+    
+    const appPath = getAppPath(selectedAppId);
+    const appUrl = `${window.location.protocol}//${window.location.host}${appPath}`;
+    window.open(appUrl, '_blank', 'noopener,noreferrer');
   };
 
   // Show three-column layout when app is selected
@@ -49,7 +63,7 @@ function CMSLayout() {
         </div>
         <div className="flex items-center gap-3">
           <TranslateAllButton />
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
           <button
             onClick={openInNewTab}
             className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-all duration-200 text-sm font-medium"
@@ -68,6 +82,7 @@ function CMSLayout() {
         {showPageSelector && <PageSelector />}
         <PreviewPanel />
         <EditorPanel />
+        <InputHelpEditorPanel />
       </div>
     </div>
   );

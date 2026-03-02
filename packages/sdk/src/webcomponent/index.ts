@@ -1,10 +1,17 @@
 import { ContentElement } from './ContentElement';
+import { InputHelpElement } from './InputHelpElement';
 
 /**
- * Register the <content-component> custom element
+ * Register custom elements
  */
-if (typeof window !== 'undefined' && !customElements.get('content-component')) {
-  customElements.define('content-component', ContentElement);
+if (typeof window !== 'undefined') {
+  if (!customElements.get('content-component')) {
+    customElements.define('content-component', ContentElement);
+  }
+  
+  if (!customElements.get('input-help')) {
+    customElements.define('input-help', InputHelpElement);
+  }
 }
 
-export { ContentElement };
+export { ContentElement, InputHelpElement };

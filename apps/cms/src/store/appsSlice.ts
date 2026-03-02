@@ -20,7 +20,29 @@ export const fetchApps = createAsyncThunk('apps/fetchApps', async () => {
     throw new Error(`Failed to fetch apps config: ${response.statusText}`);
   }
   const data: AppsConfig = await response.json();
-  return data.apps;
+  
+  // Add basePath to each app based on app ID
+  const appsWithBasePath = data.apps.map((app) => {
+    let basePath = '';
+    
+    // Map app IDs to URL paths
+    if (app.id === 'bwo-taxforms') {
+      basePath = `${window.location.protocol}//${window.location.host}/bwo`;
+    } else if (app.id === 'demo') {
+      basePath = `${window.location.protocol}//${window.location.host}/demo`;
+    } else if (app.id === 'customer-portal') {
+      basePath = `${window.location.protocol}//${window.location.host}/portal`;
+    } else {
+      basePath = `${window.location.protocol}//${window.location.host}`;
+    }
+    
+    return {
+      ...app,
+      basePath,
+    };
+  });
+  
+  return appsWithBasePath;
 });
 
 const appsSlice = createSlice({

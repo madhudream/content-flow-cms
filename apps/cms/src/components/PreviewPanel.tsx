@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchContent } from '../store/contentSlice';
-import { openEditor, setViewportMode } from '../store/uiSlice';
+import { openEditor, setViewportMode, openInputHelpEditor } from '../store/uiSlice';
 
 interface CMSMessage {
   type: string;
   contentId?: string;
+  inputHelpId?: string;
   currentValue?: string;
   newValue?: string;
   elementType?: 'text' | 'image';
@@ -20,7 +21,7 @@ export function PreviewPanel() {
   
   const { apps } = useAppSelector((state) => state.apps);
   const { selectedAppId, selectedPageId, selectedLanguage, viewportMode } = useAppSelector((state) => state.ui);
-  const { dirtyContent } = useAppSelector((state) => state.content);
+  const { dirtyContent, inputHelpCache, saveStatus } = useAppSelector((state) => state.content);
 
   const selectedApp = apps.find((app) => app.id === selectedAppId);
   const selectedPage = selectedApp?.pages.find((page) => page.id === selectedPageId);
@@ -94,6 +95,14 @@ export function PreviewPanel() {
             }));
           }
           break;
+        
+        case 'CONTENTFLOW_INPUTHELP_CLICK':
+          if (event.data.inputHelpId) {
+            dispatch(openInputHelpEditor({ 
+              inputHelpId: event.data.inputHelpId
+            }));
+          }
+          break;
       }
     };
 
@@ -116,6 +125,31 @@ export function PreviewPanel() {
       );
     });
   }, [dirtyContent, ackReceived]);
+
+  // NOTE: We don't send live preview updates for input help (dirtyInputHelp)
+  // because the help icon should only appear AFTER the user clicks "Save Changes"
+  // See the next useEffect which sends updates after successful save
+
+  // Send input help updates after successful save (when cache is updated)
+  useEffect(() => {
+    if (!iframeRef.current || !ackReceived || saveStatus !== 'success') return;
+    if (!selectedAppId || !selectedPageId || !selectedLanguage) return;
+
+    const key = `${selectedAppId}-${selectedPageId}-${selectedLanguage}`;
+    const pageInputHelp = inputHelpCache[key] || {};
+
+    // Send updates for all input help items on the current page
+    Object.entries(pageInputHelp).forEach(([inputHelpId, helpContent]) => {
+      iframeRef.current?.contentWindow?.postMessage(
+        {
+          type: 'CONTENTFLOW_INPUTHELP_UPDATE',
+          inputHelpId,
+          helpContent,
+        },
+        '*'
+      );
+    });
+  }, [inputHelpCache, saveStatus, ackReceived, selectedAppId, selectedPageId, selectedLanguage]);
 
   if (!selectedApp || !selectedPage) {
     return (

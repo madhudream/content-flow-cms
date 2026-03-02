@@ -92,7 +92,6 @@ export default async function translateRoutes(req: Request, corsHeaders: Record<
         targetLangs: payload.targetLangs,
         totalRequests: batchRequests.length,
         fileIds: batchRequests.map((r) => r.custom_id),
-        appIds,  // Include appIds for filtering
       });
 
       // 3. Calculate estimated cost (rough estimate based on typical token usage)

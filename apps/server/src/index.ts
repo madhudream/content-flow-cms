@@ -215,6 +215,38 @@ const server = Bun.serve({
           if (await staticFile.exists()) {
             // Determine content type from extension
             const contentType = getContentType(relativePath);
+            
+            // Inject Google Analytics into HTML files
+            if (relativePath.endsWith('.html')) {
+              let htmlContent = await staticFile.text();
+              
+              // Google Analytics gtag script
+              const gtagScript = `
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VF1X4MBK9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VF1X4MBK9R');
+</script>
+`;
+              
+              // Inject before </head> or at the start of <body> if no </head>
+              if (htmlContent.includes('</head>')) {
+                htmlContent = htmlContent.replace('</head>', `${gtagScript}</head>`);
+              } else if (htmlContent.includes('<body')) {
+                htmlContent = htmlContent.replace('<body', `<body>${gtagScript}`);
+              }
+              
+              return new Response(htmlContent, {
+                headers: {
+                  ...corsHeaders,
+                  'Content-Type': 'text/html',
+                },
+              });
+            }
+            
             return new Response(staticFile, {
               headers: {
                 ...corsHeaders,
@@ -227,7 +259,28 @@ const server = Bun.serve({
           const indexPath = join(config.publicDir, appName, 'index.html');
           const indexFile = file(indexPath);
           if (await indexFile.exists()) {
-            return new Response(indexFile, {
+            let htmlContent = await indexFile.text();
+            
+            // Google Analytics gtag script
+            const gtagScript = `
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VF1X4MBK9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VF1X4MBK9R');
+</script>
+`;
+            
+            // Inject before </head> or at the start of <body> if no </head>
+            if (htmlContent.includes('</head>')) {
+              htmlContent = htmlContent.replace('</head>', `${gtagScript}</head>`);
+            } else if (htmlContent.includes('<body')) {
+              htmlContent = htmlContent.replace('<body', `<body>${gtagScript}`);
+            }
+            
+            return new Response(htmlContent, {
               headers: {
                 ...corsHeaders,
                 'Content-Type': 'text/html',

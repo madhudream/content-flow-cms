@@ -1,6 +1,8 @@
 import { ContentComponent } from '@contentflow/sdk/react';
 import type { FormField as FormFieldType, FieldError } from '../types';
 import { ValidationError } from './ValidationError';
+import { useCallback } from 'react';
+import { isCMSMode } from '../utils/cmsMode';
 
 interface FormFieldProps {
   field: FormFieldType;
@@ -15,9 +17,30 @@ interface FormFieldProps {
  * Uses ContentComponent for editable labels
  */
 export function FormField({ field, value, onChange, error, pageId }: FormFieldProps) {
+  // CRITICAL DEBUG
+  console.log('[FormField] 🔍 RENDER:', {
+    fieldId: field.id,
+    inputHelpId: field.inputHelpId,
+    isCMSMode,
+    willShowConfig: isCMSMode && !!field.inputHelpId
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     onChange(field.id, e.target.value);
   };
+
+  const handleConfigClick = useCallback(() => {
+    if (field.inputHelpId) {
+      window.parent.postMessage(
+        {
+          type: 'CONTENTFLOW_INPUTHELP_CLICK',
+          inputHelpId: field.inputHelpId,
+        },
+        '*'
+      );
+      console.log('[FormField] ✏️ Config clicked:', field.inputHelpId);
+    }
+  }, [field.inputHelpId]);
 
   const inputClasses = `
     mt-1 block w-full rounded-md shadow-sm
@@ -54,47 +77,79 @@ export function FormField({ field, value, onChange, error, pageId }: FormFieldPr
     <div className="mb-4">
       {renderLabel()}
       
-      {field.type === 'textarea' ? (
-        <textarea
-          id={field.id}
-          value={value}
-          onChange={handleChange}
-          placeholder={field.placeholder}
-          required={field.required}
-          className={inputClasses + ' min-h-[100px]'}
-          maxLength={field.validation?.maxLength}
-        />
-      ) : field.type === 'select' ? (
-        <select
-          id={field.id}
-          value={value}
-          onChange={handleChange}
-          required={field.required}
-          className={inputClasses}
-        >
-          <option value="">-- Please Select --</option>
-          {field.options?.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      ) : (
-        <input
-          type={field.type}
-          id={field.id}
-          value={value}
-          onChange={handleChange}
-          placeholder={field.placeholder}
-          required={field.required}
-          className={inputClasses}
-          pattern={field.validation?.pattern}
-          minLength={field.validation?.minLength}
-          maxLength={field.validation?.maxLength}
-          min={field.validation?.min}
-          max={field.validation?.max}
-        />
-      )}
+      <div className="relative flex items-start gap-2">
+        {/* Input group: input control + config icon (CMS mode only) */}
+        <div className="flex-1 flex items-stretch rounded-md shadow-sm overflow-hidden">
+          
+          {/* Input control */}
+          {field.type === 'textarea' ? (
+            <textarea
+              id={field.id}
+              value={value}
+              onChange={handleChange}
+              placeholder={field.placeholder}
+              required={field.required}
+              className={inputClasses + ' min-h-[100px] flex-1'}
+              maxLength={field.validation?.maxLength}
+            />
+          ) : field.type === 'select' ? (
+            <select
+              id={field.id}
+              value={value}
+              onChange={handleChange}
+              required={field.required}
+              className={inputClasses + ' flex-1'}
+            >
+              <option value="">-- Please Select --</option>
+              {field.options?.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type={field.type}
+              id={field.id}
+              value={value}
+              onChange={handleChange}
+              placeholder={field.placeholder}
+              required={field.required}
+              className={inputClasses + ' flex-1'}
+              pattern={field.validation?.pattern}
+              minLength={field.validation?.minLength}
+              maxLength={field.validation?.maxLength}
+              min={field.validation?.min}
+              max={field.validation?.max}
+            />
+          )}
+          
+          {/* Configuration icon - ALWAYS visible in CMS mode for inputs with inputHelpId */}
+          {isCMSMode && field.inputHelpId && (
+            <button
+              onClick={handleConfigClick}
+              className="flex items-center justify-center px-3 bg-gradient-to-br from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-all border-l border-purple-600"
+              title="Configure input help"
+              type="button"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+            </button>
+          )}
+        </div>
+        
+        {/* InputHelp icon - SEPARATE, on the right, only if configured */}
+        {field.inputHelpId && (
+          <div className="flex items-center pt-1">
+            <input-help
+              input-help-id={field.inputHelpId}
+              position="right"
+              data-input-help-id={field.inputHelpId}
+            />
+          </div>
+        )}
+      </div>
       
       <ValidationError error={error} />
     </div>

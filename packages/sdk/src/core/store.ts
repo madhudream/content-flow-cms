@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { ContentFlowConfig, ContentStoreState, ContentMap } from '../types';
+import type { ContentFlowConfig, ContentStoreState, ContentMap, InputHelpContent } from '../types';
 import { LocalJsonAdapter } from '../adapters/LocalJsonAdapter';
 
 /**
@@ -8,6 +8,7 @@ import { LocalJsonAdapter } from '../adapters/LocalJsonAdapter';
 export const useContentStore = create<ContentStoreState>((set, get) => ({
   config: null,
   contentMaps: {},
+  inputHelp: {},
   status: {},
   errors: {},
 
@@ -15,7 +16,7 @@ export const useContentStore = create<ContentStoreState>((set, get) => ({
    * Initialize SDK with configuration and eagerly fetch all page content
    */
   initialize: async (config: ContentFlowConfig) => {
-    set({ config, contentMaps: {}, status: {}, errors: {} });
+    set({ config, contentMaps: {}, inputHelp: {}, status: {}, errors: {} });
 
     // Eagerly fetch all pages in parallel
     const fetchPromises = config.pages.map((pageId) => get().fetchPageContent(pageId));
@@ -34,7 +35,7 @@ export const useContentStore = create<ContentStoreState>((set, get) => ({
     }
 
     const newConfig = { ...config, language };
-    set({ config: newConfig, contentMaps: {}, status: {}, errors: {} });
+    set({ config: newConfig, contentMaps: {}, inputHelp: {}, status: {}, errors: {} });
 
     // Refetch all pages with new language
     const fetchPromises = newConfig.pages.map((pageId) => get().fetchPageContent(pageId));
@@ -48,6 +49,14 @@ export const useContentStore = create<ContentStoreState>((set, get) => ({
   getContent: (pageId: string, contentId: string) => {
     const { contentMaps } = get();
     return contentMaps[pageId]?.[contentId];
+  },
+
+  /**
+   * Get input help content for a specific inputHelpId
+   */
+  getInputHelp: (inputHelpId: string) => {
+    const { inputHelp } = get();
+    return inputHelp[inputHelpId];
   },
 
   /**
@@ -70,11 +79,28 @@ export const useContentStore = create<ContentStoreState>((set, get) => ({
       const adapter = new LocalJsonAdapter(config.storageUrl);
       // Use new folder structure: appId/language/pageId.json
       const filename = `${config.appId}/${config.language}/${pageId}.json`;
-      const contentMap: ContentMap = await adapter.read(filename);
+      const data = await adapter.read(filename);
 
-      // Update content map
+      // Extract content map and input help
+      const contentMap: ContentMap = {};
+      const pageInputHelp: Record<string, InputHelpContent> = {};
+
+      Object.entries(data).forEach(([key, value]) => {
+        if (key === '$meta') {
+          // Skip metadata
+        } else if (key === 'inputHelp' && typeof value === 'object' && value !== null) {
+          // Extract input help
+          Object.assign(pageInputHelp, value);
+        } else if (typeof value === 'string') {
+          // Extract content strings
+          contentMap[key] = value;
+        }
+      });
+
+      // Update content map and input help
       set((state) => ({
         contentMaps: { ...state.contentMaps, [pageId]: contentMap },
+        inputHelp: { ...state.inputHelp, ...pageInputHelp },
         status: { ...state.status, [pageId]: 'loaded' },
         errors: { ...state.errors, [pageId]: null },
       }));
